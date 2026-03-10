@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIRAN // ELITE ATHLETIC PROGRAM</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #D4AF37;
+  --gold-light: #FFD700;
+  --cyan: #00D4FF;
+  --red: #FF3B3B;
+  --bg: #060608;
+  --bg2: #0d0d12;
+  --bg3: #12121a;
+  --card: rgba(255,255,255,0.035);
+  --border: rgba(212,175,55,0.18);
+  --border2: rgba(0,212,255,0.15);
+  --text: #f0efe8;
+  --muted: #7a7870;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);overflow-x:hidden;min-height:100vh;}
+
+/* ── NOISE OVERLAY ── */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,6,8,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:0;}
+.nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;}
+.nav-inner::-webkit-scrollbar{display:none;}
+.nav-logo{font-family:var(--font-display);font-size:1.6rem;letter-spacing:.15em;color:var(--gold);padding:14px 28px;border-right:1px solid var(--border);white-space:nowrap;flex-shrink:0;}
+.nav-tabs{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;}
+.nav-tabs::-webkit-scrollbar{display:none;}
+.nav-tab{font-family:var(--font-display);font-size:.95rem;letter-spacing:.12em;color:var(--muted);padding:14px 20px;cursor:pointer;transition:all .25s;border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0;text-decoration:none;display:block;}
+.nav-tab:hover,.nav-tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 40px 80px;overflow:hidden;z-index:1;}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(212,175,55,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+.hero-glow{position:absolute;top:20%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(212,175,55,0.08) 0%,transparent 70%);pointer-events:none;}
+.hero-glow2{position:absolute;bottom:10%;right:10%;width:400px;height:400px;background:radial-gradient(circle,rgba(0,212,255,0.06) 0%,transparent 70%);pointer-events:none;}
+.hero-content{max-width:1400px;margin:0 auto;width:100%;z-index:1;}
+.hero-tag{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.3em;color:var(--cyan);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.hero-tag::before{content:'';width:40px;height:1px;background:var(--cyan);}
+.hero-name{font-family:var(--font-display);font-size:clamp(5rem,12vw,11rem);line-height:.9;letter-spacing:.05em;margin-bottom:8px;background:linear-gradient(135deg,#fff 0%,var(--gold) 50%,#fff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-family:var(--font-display);font-size:clamp(1.2rem,3vw,2.2rem);letter-spacing:.2em;color:var(--muted);margin-bottom:48px;}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;max-width:900px;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;overflow:hidden;transition:transform .3s,border-color .3s;}
+.stat-card:hover{transform:translateY(-4px);border-color:var(--gold);}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.6;}
+.stat-label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-bottom:6px;}
+.stat-val{font-family:var(--font-display);font-size:2rem;letter-spacing:.05em;color:var(--gold);}
+.stat-unit{font-family:var(--font-body);font-size:.8rem;color:var(--muted);margin-top:2px;}
+.goal-bar{max-width:1400px;margin:48px auto 0;padding:28px 36px;background:linear-gradient(135deg,rgba(212,175,55,0.08),rgba(0,212,255,0.05));border:1px solid var(--border);border-radius:16px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.goal-icon{font-size:2.5rem;}
+.goal-text h3{font-family:var(--font-display);font-size:1.4rem;letter-spacing:.1em;color:var(--gold);}
+.goal-text p{font-size:.9rem;color:var(--muted);margin-top:4px;}
+.cr7-badge{margin-left:auto;background:linear-gradient(135deg,var(--gold),#8B7000);color:#000;font-family:var(--font-display);font-size:1rem;letter-spacing:.15em;padding:10px 24px;border-radius:50px;white-space:nowrap;}
+
+/* ── SECTION ── */
+section{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:80px 40px;}
+.section-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:48px;}
+.section-num{font-family:var(--font-mono);font-size:.7rem;color:var(--cyan);letter-spacing:.3em;writing-mode:vertical-rl;transform:rotate(180deg);margin-top:8px;}
+.section-title-wrap{}
+.section-tag{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;margin-bottom:8px;}
+.section-title{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:.08em;line-height:1;}
+.section-title .accent{color:var(--gold);}
+
+/* ── DAY TABS ── */
+.day-tabs{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;}
+.day-tab{font-family:var(--font-display);font-size:.9rem;letter-spacing:.15em;padding:10px 22px;border:1px solid var(--border);border-radius:6px;cursor:pointer;transition:all .2s;background:transparent;color:var(--muted);}
+.day-tab:hover,.day-tab.active{background:var(--gold);color:#000;border-color:var(--gold);}
+
+/* ── WORKOUT DAY ── */
+.workout-day{display:none;}
+.workout-day.active{display:block;}
+.day-header{display:flex;align-items:center;gap:20px;margin-bottom:32px;padding:24px 32px;background:linear-gradient(135deg,rgba(212,175,55,0.07),transparent);border:1px solid var(--border);border-radius:16px;}
+.day-name{font-family:var(--font-display);font-size:2.5rem;letter-spacing:.1em;color:var(--gold);}
+.day-focus{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.2em;color:var(--cyan);margin-top:4px;}
+.day-meta{margin-left:auto;text-align:right;}
+.day-meta span{display:block;font-family:var(--font-mono);font-size:.7rem;color:var(--muted);letter-spacing:.1em;}
+.day-meta strong{font-family:var(--font-display);font-size:1.4rem;color:var(--text);}
+
+/* ── EXERCISE CARD ── */
+.exercises-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:20px;}
+.ex-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;}
+.ex-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(212,175,55,0.1);border-color:rgba(212,175,55,0.4);}
+.ex-card-top{padding:24px 24px 16px;display:flex;align-items:flex-start;gap:16px;}
+.ex-num{font-family:var(--font-display);font-size:3rem;line-height:1;color:rgba(212,175,55,0.15);flex-shrink:0;width:50px;}
+.ex-top-info{flex:1;}
+.ex-name{font-family:var(--font-display);font-size:1.5rem;letter-spacing:.08em;color:var(--text);}
+.ex-sets{display:flex;gap:8px;margin-top:8px;}
+.pill{font-family:var(--font-mono);font-size:.7rem;padding:4px 12px;border-radius:50px;letter-spacing:.1em;}
+.pill-gold{background:rgba(212,175,55,0.15);color:var(--gold);border:1px solid rgba(212,175,55,0.3);}
+.pill-cyan{background:rgba(0,212,255,0.1);color:var(--cyan);border:1px solid rgba(0,212,255,0.2);}
+.pill-red{background:rgba(255,59,59,0.1);color:var(--red);border:1px solid rgba(255,59,59,0.2);}
+.ex-card-body{padding:0 24px 24px;}
+.ex-section{margin-top:14px;}
+.ex-section-title{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.25em;color:var(--muted);text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.ex-section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.ex-section p,.ex-section li{font-size:.82rem;line-height:1.6;color:rgba(240,239,232,0.75);}
+.ex-section ul{padding-left:16px;}
+.ex-section li{margin-bottom:3px;}
+.ex-alts{display:flex;flex-direction:column;gap:6px;margin-top:6px;}
+.alt-item{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted);}
+.alt-item::before{content:'↳';color:var(--cyan);font-family:var(--font-mono);}
+.ex-links{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.yt-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:.65rem;letter-spacing:.12em;color:#FF4444;border:1px solid rgba(255,68,68,0.3);padding:6px 14px;border-radius:6px;text-decoration:none;transition:all .2s;background:rgba(255,68,68,0.06);}
+.yt-btn:hover{background:rgba(255,68,68,0.15);border-color:#FF4444;}
+.yt-btn svg{width:14px;height:14px;}
+.warn-box{margin-top:10px;padding:10px 14px;background:rgba(255,59,59,0.06);border-left:3px solid var(--red);border-radius:0 6px 6px 0;}
+.warn-box p{font-size:.78rem;color:rgba(255,120,120,0.9);}
+.warn-box strong{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:3px;color:var(--red);}
+
+/* ── NUTRITION ── */
+.meal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:20px;}
+.meal-card{background:var(--card);border:1px solid var(--border2);border-radius:16px;overflow:hidden;transition:transform .3s;}
+.meal-card:hover{transform:translateY(-3px);}
+.meal-header{padding:20px 24px 14px;border-bottom:1px solid rgba(0,212,255,0.1);}
+.meal-time{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.25em;color:var(--cyan);margin-bottom:4px;}
+.meal-name{font-family:var(--font-display);font-size:1.4rem;letter-spacing:.08em;}
+.meal-macros{display:flex;gap:16px;margin-top:10px;}
+.macro{text-align:center;}
+.macro-val{font-family:var(--font-display);font-size:1.1rem;color:var(--gold);}
+.macro-label{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;}
+.meal-items{padding:16px 24px;}
+.food-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.food-row:last-child{border-bottom:none;}
+.food-name{font-size:.82rem;color:var(--text);}
+.food-qty{font-family:var(--font-mono);font-size:.7rem;color:var(--muted);}
+.food-cal{font-family:var(--font-mono);font-size:.7rem;color:var(--gold);}
+.meal-purpose{margin:0 24px 16px;padding:10px 14px;background:rgba(0,212,255,0.05);border-radius:8px;font-size:.78rem;color:rgba(240,239,232,0.65);line-height:1.5;}
+
+/* ── TOTALS ── */
+.totals-bar{background:linear-gradient(135deg,rgba(212,175,55,0.1),rgba(0,212,255,0.06));border:1px solid var(--border);border-radius:16px;padding:32px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:24px;margin-bottom:40px;}
+.total-item{text-align:center;}
+.total-val{font-family:var(--font-display);font-size:2.5rem;color:var(--gold);}
+.total-label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-top:4px;}
+.total-note{font-size:.7rem;color:rgba(0,212,255,0.7);margin-top:2px;}
+
+/* ── RULES ── */
+.rules-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;}
+.rule-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;display:flex;gap:16px;align-items:flex-start;transition:border-color .2s;}
+.rule-card:hover{border-color:var(--gold);}
+.rule-icon{font-size:1.8rem;flex-shrink:0;margin-top:2px;}
+.rule-title{font-family:var(--font-display);font-size:1.1rem;letter-spacing:.08em;margin-bottom:6px;}
+.rule-text{font-size:.82rem;color:var(--muted);line-height:1.6;}
+
+/* ── PROGRESS TIMELINE ── */
+.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.timeline-phase{padding:28px;border-right:1px solid var(--border);position:relative;}
+.timeline-phase:last-child{border-right:none;}
+.phase-period{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.2em;color:var(--cyan);margin-bottom:10px;}
+.phase-title{font-family:var(--font-display);font-size:1.2rem;letter-spacing:.08em;color:var(--gold);margin-bottom:12px;}
+.phase-items{list-style:none;}
+.phase-items li{font-size:.8rem;color:var(--muted);padding:4px 0;display:flex;gap:8px;align-items:center;}
+.phase-items li::before{content:'◆';font-size:.4rem;color:var(--gold);}
+
+/* ── WATER OPINION ── */
+.opinion-card{background:linear-gradient(135deg,rgba(0,212,255,0.07),rgba(0,212,255,0.02));border:1px solid var(--border2);border-radius:16px;padding:32px;margin-bottom:32px;}
+.opinion-card h3{font-family:var(--font-display);font-size:1.6rem;letter-spacing:.1em;color:var(--cyan);margin-bottom:12px;}
+.opinion-card p{font-size:.88rem;line-height:1.7;color:rgba(240,239,232,0.8);}
+
+/* ── DISCREPANCY ── */
+.disc-card{background:rgba(255,59,59,0.05);border:1px solid rgba(255,59,59,0.2);border-radius:12px;padding:24px;margin-bottom:24px;}
+.disc-card h4{font-family:var(--font-display);font-size:1.1rem;letter-spacing:.08em;color:var(--red);margin-bottom:8px;}
+.disc-card p{font-size:.83rem;color:rgba(255,160,160,0.8);line-height:1.6;}
+
+/* ── REST DAY ── */
+.rest-card{background:linear-gradient(135deg,rgba(212,175,55,0.05),transparent);border:1px solid var(--border);border-radius:16px;padding:48px;text-align:center;}
+.rest-card h2{font-family:var(--font-display);font-size:3rem;letter-spacing:.15em;color:var(--gold);margin-bottom:16px;}
+.rest-card p{font-size:.9rem;color:var(--muted);max-width:500px;margin:0 auto;line-height:1.7;}
+.rest-activities{display:flex;gap:16px;justify-content:center;margin-top:32px;flex-wrap:wrap;}
+.rest-act{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 24px;font-size:.85rem;color:var(--muted);}
+
+/* ── FOOTER ── */
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:40px;text-align:center;}
+footer p{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.2em;color:var(--muted);}
+footer span{color:var(--gold);}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* ── ANIMATIONS ── */
+@keyframes pulse-gold{0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,0.4);}50%{box-shadow:0 0 0 10px rgba(212,175,55,0);}}
+.live-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:.65rem;letter-spacing:.15em;color:var(--gold);padding:6px 14px;border:1px solid rgba(212,175,55,0.3);border-radius:50px;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse-gold 2s infinite;}
+@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+.shimmer-line{background:linear-gradient(90deg,transparent,rgba(212,175,55,0.15),transparent);background-size:200% 100%;animation:shimmer 3s infinite;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .hero{padding:100px 20px 60px;}
+  section{padding:60px 20px;}
+  .hero-name{font-size:clamp(3.5rem,15vw,6rem);}
+  .exercises-grid{grid-template-columns:1fr;}
+  .meal-grid{grid-template-columns:1fr;}
+  .day-header{flex-direction:column;gap:12px;}
+  .day-meta{margin-left:0;text-align:left;}
+  .totals-bar{padding:20px;}
+  nav{padding:0;}
+  .nav-logo{padding:12px 16px;font-size:1.2rem;}
+  .nav-tab{padding:12px 14px;font-size:.8rem;}
+}
+
+/* ══════════════════════════════════════
+   PREMIUM DIET V2 — FULL REBUILD
+══════════════════════════════════════ */
+.diet-day-tabs{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap;}
+.diet-day-tab{font-family:var(--font-display);font-size:.9rem;letter-spacing:.15em;padding:10px 22px;border:1px solid var(--border);border-radius:6px;cursor:pointer;transition:all .2s;background:transparent;color:var(--muted);}
+.diet-day-tab:hover{background:rgba(212,175,55,0.1);color:var(--gold);border-color:rgba(212,175,55,0.4);}
+.diet-day-tab.active{background:var(--gold);color:#000;border-color:var(--gold);}
+.diet-day-tab.sunday-tab.active{background:var(--cyan);color:#000;border-color:var(--cyan);}
+
+.diet-day-content{display:none;}
+.diet-day-content.active{display:block;}
+
+/* water protocol card */
+.water-card{background:linear-gradient(135deg,rgba(0,212,255,0.07),rgba(0,212,255,0.02));border:1px solid rgba(0,212,255,0.2);border-radius:16px;padding:28px 32px;margin-bottom:40px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;}
+.water-icon-big{font-size:3rem;flex-shrink:0;}
+.water-info{flex:1;}
+.water-title{font-family:var(--font-display);font-size:1.6rem;letter-spacing:.1em;color:var(--cyan);margin-bottom:10px;}
+.water-blocks{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;}
+.water-block{background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.15);border-radius:8px;padding:12px 18px;text-align:center;}
+.water-block-val{font-family:var(--font-display);font-size:1.4rem;color:var(--cyan);}
+.water-block-lbl{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+
+/* macros banner */
+.diet-macro-banner{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:40px;}
+.diet-macro-cell{padding:20px 16px;text-align:center;border-right:1px solid var(--border);position:relative;}
+.diet-macro-cell:last-child{border-right:none;}
+.diet-macro-cell::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.diet-macro-cell.kcal::before{background:linear-gradient(90deg,var(--gold),transparent);}
+.diet-macro-cell.prot::before{background:linear-gradient(90deg,var(--cyan),transparent);}
+.diet-macro-cell.carb::before{background:linear-gradient(90deg,rgba(255,200,0,0.8),transparent);}
+.diet-macro-cell.fat::before{background:linear-gradient(90deg,rgba(255,140,0,0.8),transparent);}
+.diet-macro-cell.fiber::before{background:linear-gradient(90deg,rgba(100,200,100,0.8),transparent);}
+.diet-macro-big{font-family:var(--font-display);font-size:2rem;color:var(--gold);}
+.diet-macro-lbl{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-top:4px;}
+.diet-macro-note{font-size:.68rem;color:rgba(0,212,255,0.7);margin-top:3px;}
+
+/* meal section */
+.diet-meals{display:flex;flex-direction:column;gap:28px;}
+.diet-meal{border-radius:16px;overflow:hidden;border:1px solid var(--border2);transition:box-shadow .3s;}
+.diet-meal:hover{box-shadow:0 12px 50px rgba(0,212,255,0.07);}
+.diet-meal.star-meal{border-color:rgba(212,175,55,0.35);}
+.diet-meal.star-meal:hover{box-shadow:0 12px 50px rgba(212,175,55,0.12);}
+
+.diet-meal-header{padding:22px 28px 18px;background:var(--card);display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;}
+.diet-meal-left{flex:1;min-width:200px;}
+.diet-meal-time-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.diet-meal-time{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.25em;color:var(--cyan);}
+.diet-meal-badge{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.15em;padding:3px 10px;border-radius:50px;background:rgba(212,175,55,0.15);color:var(--gold);border:1px solid rgba(212,175,55,0.3);}
+.diet-meal-badge.whey-badge{background:rgba(0,212,255,0.1);color:var(--cyan);border-color:rgba(0,212,255,0.25);}
+.diet-meal-name{font-family:var(--font-display);font-size:1.5rem;letter-spacing:.08em;color:var(--text);}
+.diet-meal-macros{display:flex;gap:12px;flex-wrap:wrap;}
+.diet-m-macro{text-align:center;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;padding:10px 14px;min-width:60px;}
+.diet-m-macro-val{font-family:var(--font-display);font-size:1.1rem;color:var(--gold);}
+.diet-m-macro-lbl{font-family:var(--font-mono);font-size:.5rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+
+.diet-meal-purpose{padding:12px 28px 14px;background:rgba(0,212,255,0.04);border-top:1px solid rgba(0,212,255,0.08);font-size:.8rem;color:rgba(240,239,232,0.65);line-height:1.6;}
+
+/* food items */
+.diet-food-list{background:var(--bg2);}
+.diet-food-item{border-top:1px solid rgba(255,255,255,0.04);cursor:pointer;transition:background .2s;}
+.diet-food-item:hover .diet-food-row{background:rgba(212,175,55,0.025);}
+.diet-food-item.expanded .diet-food-row{background:rgba(212,175,55,0.04);}
+
+.diet-food-row{display:flex;align-items:center;gap:10px;padding:14px 28px;transition:background .2s;}
+.diet-food-emoji{font-size:1.1rem;flex-shrink:0;width:28px;text-align:center;}
+.diet-food-name-wrap{flex:1;}
+.diet-food-name{font-size:.88rem;color:var(--text);display:block;}
+.diet-food-tag{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.12em;color:var(--muted);margin-top:2px;}
+.diet-food-qty{font-family:var(--font-mono);font-size:.68rem;color:var(--muted);white-space:nowrap;}
+.diet-food-cal{font-family:var(--font-mono);font-size:.68rem;color:var(--gold);white-space:nowrap;min-width:70px;text-align:right;}
+.diet-expand-icon{width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.65rem;color:var(--muted);transition:all .25s;flex-shrink:0;margin-left:4px;}
+.diet-food-item.expanded .diet-expand-icon{background:var(--gold);color:#000;border-color:var(--gold);transform:rotate(45deg);}
+
+/* detail panel */
+.diet-food-detail{display:none;padding:4px 28px 20px;border-top:1px solid rgba(212,175,55,0.08);}
+.diet-food-item.expanded .diet-food-detail{display:block;}
+.diet-detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px;}
+@media(max-width:600px){.diet-detail-grid{grid-template-columns:1fr;}}
+.diet-detail-box{border-radius:10px;padding:14px 16px;border:1px solid;}
+.diet-detail-box.what{background:rgba(212,175,55,0.04);border-color:rgba(212,175,55,0.15);}
+.diet-detail-box.provides{background:rgba(0,212,255,0.04);border-color:rgba(0,212,255,0.15);}
+.diet-detail-box.where{background:rgba(255,255,255,0.025);border-color:rgba(255,255,255,0.06);}
+.diet-detail-box.goodfor{background:rgba(100,200,100,0.04);border-color:rgba(100,200,100,0.12);}
+.diet-detail-lbl{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.diet-detail-box.what .diet-detail-lbl{color:var(--gold);}
+.diet-detail-box.provides .diet-detail-lbl{color:var(--cyan);}
+.diet-detail-box.where .diet-detail-lbl{color:var(--muted);}
+.diet-detail-box.goodfor .diet-detail-lbl{color:rgba(120,220,120,0.9);}
+.diet-detail-txt{font-size:.8rem;line-height:1.65;color:rgba(240,239,232,0.75);}
+
+/* sunday rest card */
+.sunday-rest-banner{background:linear-gradient(135deg,rgba(0,212,255,0.07),rgba(0,212,255,0.02));border:1px solid rgba(0,212,255,0.2);border-radius:16px;padding:28px 32px;margin-bottom:32px;text-align:center;}
+.sunday-rest-banner h2{font-family:var(--font-display);font-size:2.2rem;letter-spacing:.12em;color:var(--cyan);margin-bottom:10px;}
+.sunday-rest-banner p{font-size:.85rem;color:var(--muted);max-width:560px;margin:0 auto;line-height:1.7;}
+
+/* weekly notes */
+.diet-weekly-notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:40px;}
+.diet-note-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;}
+.diet-note-title{font-family:var(--font-display);font-size:1rem;letter-spacing:.08em;color:var(--gold);margin-bottom:8px;}
+.diet-note-text{font-size:.8rem;color:var(--muted);line-height:1.6;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">KIRAN</div>
+    <div class="nav-tabs">
+      <a class="nav-tab active" href="#profile" onclick="setTab(event,'profile')">PROFILE</a>
+      <a class="nav-tab" href="#workout" onclick="setTab(event,'workout')">MONDAY</a>
+      <a class="nav-tab" href="#workout" onclick="setTab(event,'workout');setDay('tue')">TUESDAY</a>
+      <a class="nav-tab" href="#workout" onclick="setTab(event,'workout');setDay('wed')">WEDNESDAY</a>
+      <a class="nav-tab" href="#workout" onclick="setTab(event,'workout');setDay('thu')">THURSDAY</a>
+      <a class="nav-tab" href="#workout" onclick="setTab(event,'workout');setDay('fri')">FRIDAY</a>
+      <a class="nav-tab" href="#workout" onclick="setTab(event,'workout');setDay('sat')">SATURDAY</a>
+      <a class="nav-tab" href="#workout" onclick="setTab(event,'workout');setDay('sun')">SUNDAY</a>
+      <a class="nav-tab" href="#diet" onclick="setTab(event,'diet')">DIET</a>
+      <a class="nav-tab" href="#rules" onclick="setTab(event,'rules')">RULES</a>
+      <a class="nav-tab" href="#progress" onclick="setTab(event,'progress')">PROGRESS</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGES -->
+<div id="page-profile">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">ELITE ATHLETIC TRANSFORMATION PROGRAM</div>
+    <div class="hero-name">KIRAN</div>
+    <div class="hero-sub">AGE 28 &nbsp;·&nbsp; 178 CM &nbsp;·&nbsp; LB NAGAR, HYD</div>
+    <div class="hero-stats reveal">
+      <div class="stat-card">
+        <div class="stat-label">Current Weight</div>
+        <div class="stat-val">97.4</div>
+        <div class="stat-unit">kilograms</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Body Fat</div>
+        <div class="stat-val">~30</div>
+        <div class="stat-unit">percent</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Muscle Mass</div>
+        <div class="stat-val">38.8</div>
+        <div class="stat-unit">kilograms</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Target Weight</div>
+        <div class="stat-val">75–80</div>
+        <div class="stat-unit">kilograms</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Target BF%</div>
+        <div class="stat-val">12–15</div>
+        <div class="stat-unit">percent</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Daily Walk</div>
+        <div class="stat-val">10</div>
+        <div class="stat-unit">km · zone 2</div>
+      </div>
+    </div>
+    <div class="goal-bar reveal" style="animation-delay:.2s">
+      <div class="goal-icon">🎯</div>
+      <div class="goal-text">
+        <h3>MISSION: CR7 ATHLETIC PHYSIQUE</h3>
+        <p>Broad shoulders · Defined chest · Pack abs · V-taper · Athletic legs · Elite strength</p>
+      </div>
+      <div class="cr7-badge">CR7 BUILD</div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY TYPE SECTION -->
+<section>
+  <div class="section-header reveal">
+    <div class="section-num">01</div>
+    <div class="section-title-wrap">
+      <div class="section-tag">Body Composition Analysis</div>
+      <div class="section-title">YOUR <span class="accent">PHENOTYPE</span></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;" class="reveal">
+    <div class="stat-card" style="padding:28px;">
+      <div style="font-family:var(--font-display);font-size:1.6rem;color:var(--gold);margin-bottom:12px;">MUSCULAR OVERWEIGHT PHENOTYPE</div>
+      <p style="font-size:.85rem;line-height:1.8;color:var(--muted);">You are NOT a typical overweight beginner. You carry 38.8 kg of skeletal muscle — above average for your age. Your body has strong neuromuscular memory from years of athletic activity. This means your recomposition potential is extraordinarily high. You can lose fat AND gain muscle simultaneously — something most people cannot do.</p>
+    </div>
+    <div class="stat-card" style="padding:28px;">
+      <div style="font-family:var(--font-display);font-size:1.3rem;color:var(--cyan);margin-bottom:16px;">ADVANTAGES YOU HAVE</div>
+      <ul style="list-style:none;font-size:.83rem;color:var(--muted);line-height:2;">
+        <li>◆ &nbsp;High baseline muscle mass (38.8 kg)</li>
+        <li>◆ &nbsp;Strong structural frame (178 cm)</li>
+        <li>◆ &nbsp;Muscle memory from athletic history</li>
+        <li>◆ &nbsp;Good hormonal baseline for recomp</li>
+        <li>◆ &nbsp;High recomposition potential</li>
+      </ul>
+    </div>
+    <div class="stat-card" style="padding:28px;">
+      <div style="font-family:var(--font-display);font-size:1.3rem;color:var(--red);margin-bottom:16px;">AREAS TO MANAGE</div>
+      <ul style="list-style:none;font-size:.83rem;color:var(--muted);line-height:2;">
+        <li>◆ &nbsp;Elevated visceral fat (metabolic risk)</li>
+        <li>◆ &nbsp;Connective tissue deconditioning</li>
+        <li>◆ &nbsp;Joint stress from 97.4 kg bodyweight</li>
+        <li>◆ &nbsp;Moderate insulin resistance risk</li>
+        <li>◆ &nbsp;Suppressed mitochondrial activity</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Discrepancy / Opinion section -->
+  <div style="margin-top:40px;" class="reveal">
+    <div style="font-family:var(--font-display);font-size:1.4rem;letter-spacing:.1em;color:var(--gold);margin-bottom:20px;">⚠️ CROSS-VERIFICATION FINDINGS</div>
+    <div class="disc-card">
+      <h4>WATER INTAKE: 5L vs 4.5L</h4>
+      <p><strong>Client stated 5L/day. Prescription says 4.5L.</strong><br>
+      OPINION: 5L is EXCESSIVE for your size and climate unless you're sweating heavily. Optimal for you = 4 to 4.5L/day. Above 5L without electrolyte balance can cause hyponatremia (sodium dilution), fatigue, headaches. Stick to 4 to 4.5L including water from food. On heavy training days or extreme summer heat: up to 5L is acceptable — but don't force it.</p>
+    </div>
+    <div class="disc-card">
+      <h4>CALORIE RANGE INCONSISTENCY</h4>
+      <p>Profile states 2200–2300 kcal target; meal plan totals ~2363 kcal. This is fine — the 2350–2450 range is the correct prescription for your training volume (10 km walk + gym). The lower range was an initial conservative estimate. <strong>USE: 2350–2450 kcal/day.</strong></p>
+    </div>
+    <div class="disc-card" style="background:rgba(0,212,255,0.04);border-color:rgba(0,212,255,0.2);">
+      <h4 style="color:var(--cyan);">WHEY PROTEIN NOTE</h4>
+      <p style="color:rgba(160,220,255,0.8);">Whey is listed in the nutrition plan but NOT in the original food availability list. CONFIRM: Do you have access to whey protein? If not, replace 1 scoop whey (26g protein) with 2 extra egg whites + 100g extra chicken distributed across meals to maintain the 165g protein target.</p>
+    </div>
+  </div>
+</section>
+
+</div><!-- /page-profile -->
+
+<!-- WORKOUT PAGE -->
+<div id="page-workout" style="display:none;">
+<section id="workout-section">
+  <div class="section-header reveal">
+    <div class="section-num">02</div>
+    <div class="section-title-wrap">
+      <div class="section-tag">Cult Elite Gym · LB Nagar · Mon–Sat</div>
+      <div class="section-title">TRAINING <span class="accent">PROGRAM</span></div>
+    </div>
+  </div>
+
+  <div class="day-tabs">
+    <button class="day-tab active" onclick="setDay('mon')">MON</button>
+    <button class="day-tab" onclick="setDay('tue')">TUE</button>
+    <button class="day-tab" onclick="setDay('wed')">WED</button>
+    <button class="day-tab" onclick="setDay('thu')">THU</button>
+    <button class="day-tab" onclick="setDay('fri')">FRI</button>
+    <button class="day-tab" onclick="setDay('sat')">SAT</button>
+    <button class="day-tab" onclick="setDay('sun')">SUN</button>
+  </div>
+
+  <!-- MONDAY -->
+  <div class="workout-day active" id="day-mon">
+    <div class="day-header">
+      <div>
+        <div class="day-name">MONDAY</div>
+        <div class="day-focus">UPPER BODY STRENGTH · CHEST + BACK + SHOULDERS + ARMS</div>
+      </div>
+      <div class="day-meta">
+        <span>Duration</span>
+        <strong>60 MIN</strong>
+        <span style="margin-top:4px;">Rest between sets</span>
+        <strong>90–120 SEC</strong>
+      </div>
+    </div>
+    <div style="padding:14px 20px;background:rgba(212,175,55,0.07);border:1px solid var(--border);border-radius:10px;margin-bottom:24px;font-size:.82rem;color:var(--muted);line-height:1.6;">
+      <strong style="color:var(--gold);font-family:var(--font-display);letter-spacing:.08em;">MONDAY FOCUS:</strong> Neural strength. Go heavy. These sets should feel like maximum effort. This is the session that builds your chest architecture and upper body width. Every set on bench press, every pull-up rep brings your chest definition closer to CR7 level.
+    </div>
+    <div class="exercises-grid">
+
+      <!-- 1. Bench Press -->
+      <div class="ex-card">
+        <div class="ex-card-top">
+          <div class="ex-num">01</div>
+          <div class="ex-top-info">
+            <div class="ex-name">BARBELL BENCH PRESS</div>
+            <div class="ex-sets">
+              <span class="pill pill-gold">4 SETS</span>
+              <span class="pill pill-cyan">6 REPS</span>
+              <span class="pill pill-red">HEAVY</span>
+            </div>
+          </div>
+        </div>
+        <div class="ex-card-body">
+          <div class="ex-section">
+            <div class="ex-section-title">What it does to your body</div>
+            <p>Primary driver of pectoral (chest) hypertrophy. Recruits pectoralis major, anterior deltoid, and triceps simultaneously. The horizontal pressing pattern thickens the mid and lower chest giving you that defined, full chest projection CR7 carries. Heavy bench press also triggers high testosterone and growth hormone release — your primary fat-burning hormones.</p>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div>
+            <ul>
+              <li>Arch your lower back slightly — keep glutes and upper back on bench</li>
+              <li>Bar path: touches lower chest (nipple line), not collarbone</li>
+              <li>Grip width: slightly wider than shoulder width (index fingers on rings)</li>
+              <li>Unrack with locked elbows, lower slowly (2 seconds down)</li>
+              <li>Drive feet into floor during the press — full body tension</li>
+              <li>Do NOT bounce the bar off your chest</li>
+            </ul>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">Advantages for YOUR goals</div>
+            <p>At 97.4 kg with 38.8 kg muscle mass, you have the frame to press serious weight. This directly attacks your chest fat pockets and builds the defined pec line visible at 12–15% body fat. Expect to bench 90–100 kg within 6 months.</p>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">Alternate exercises (if barbell unavailable)</div>
+            <div class="ex-alts">
+              <div class="alt-item">Dumbbell Flat Chest Press (same movement, better range of motion)</div>
+              <div class="alt-item">Smith Machine Bench Press (safer solo, same stimulus)</div>
+            </div>
+          </div>
+          <div class="ex-links">
+            <a class="yt-btn" href="https://www.youtube.com/results?search_query=bench+press+proper+form+tutorial+jeff+nippard" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+              WATCH TUTORIAL
+            </a>
+          </div>
+          <div class="warn-box">
+            <strong>⚠ JOINT WARNING</strong>
+            <p>Your connective tissue is deconditioned from sedentary years. Start Week 1–2 at 50–60% of max weight. Never sacrifice shoulder position for heavy weight.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Pull-ups / Lat Pulldown -->
+      <div class="ex-card">
+        <div class="ex-card-top">
+          <div class="ex-num">02</div>
+          <div class="ex-top-info">
+            <div class="ex-name">PULL-UPS / LAT PULLDOWN</div>
+            <div class="ex-sets">
+              <span class="pill pill-gold">4 SETS</span>
+              <span class="pill pill-cyan">8 REPS</span>
+              <span class="pill pill-red">CONTROLLED</span>
+            </div>
+          </div>
+        </div>
+        <div class="ex-card-body">
+          <div class="ex-section">
+            <div class="ex-section-title">What it does to your body</div>
+            <p>The single most important V-taper builder. Latissimus dorsi (lats) are the wide muscles that run from your armpits to your lower back. Wide lats make your waist appear smaller — creating the illusion of a lean torso even before all the fat is gone. CR7's iconic V-shape comes from massive lat development. Pull-ups also work biceps, rear deltoids, and core stabilizers.</p>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div>
+            <ul>
+              <li>Use lat pulldown machine if you cannot do 8 clean pull-up reps yet</li>
+              <li>Wide grip, hands just outside shoulder width</li>
+              <li>Initiate by DEPRESSING your shoulder blades DOWN before pulling</li>
+              <li>Pull elbows toward your hips — not just pulling arms down</li>
+              <li>Full dead hang at bottom, chin over bar at top</li>
+              <li>3 second negative (lowering phase) — this is where gains happen</li>
+            </ul>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">Advantages for YOUR goals</div>
+            <p>With your muscle memory from athletic years, your lats will respond fast. Within 8–12 weeks you'll see width developing. This directly counteracts the wide belly appearance by building shoulder and back width.</p>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">Alternate exercises</div>
+            <div class="ex-alts">
+              <div class="alt-item">Assisted Pull-up Machine (reduce bodyweight assistance progressively)</div>
+              <div class="alt-item">Cable Straight-Arm Pulldown (isolates lats perfectly)</div>
+            </div>
+          </div>
+          <div class="ex-links">
+            <a class="yt-btn" href="https://www.youtube.com/results?search_query=pull+up+proper+form+tutorial+beginners+lat+pulldown" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+              WATCH TUTORIAL
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. OHP -->
+      <div class="ex-card">
+        <div class="ex-card-top">
+          <div class="ex-num">03</div>
+          <div class="ex-top-info">
+            <div class="ex-name">OVERHEAD BARBELL PRESS</div>
+            <div class="ex-sets">
+              <span class="pill pill-gold">3 SETS</span>
+              <span class="pill pill-cyan">8 REPS</span>
+              <span class="pill pill-red">STRENGTH</span>
+            </div>
+          </div>
+        </div>
+        <div class="ex-card-body">
+          <div class="ex-section">
+            <div class="ex-section-title">What it does to your body</div>
+            <p>The king of shoulder movements. Develops all 3 heads of the deltoid, primarily the anterior (front) and medial (side). Boulder shoulders are what gives an athletic physique its width from the front. Strong overhead press also builds upper trap thickness, tricep mass, and forces core stability. CR7's wide-shouldered silhouette is primarily built by heavy pressing.</p>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div>
+            <ul>
+              <li>Standing OHP preferred — engages core and glutes for stability</li>
+              <li>Grip slightly wider than shoulders, elbows at 45° angle to body</li>
+              <li>Bar path: straight vertical line, chin tilts back to let bar pass</li>
+              <li>Brace your core hard — this is a full-body lift</li>
+              <li>Do NOT lean back excessively — that's lower back danger</li>
+              <li>Lock out fully overhead at top with shrug at end</li>
+            </ul>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">Alternate exercises</div>
+            <div class="ex-alts">
+              <div class="alt-item">Seated Dumbbell Shoulder Press (safer, better range of motion)</div>
+              <div class="alt-item">Seated Machine Shoulder Press (available at Cult Elite)</div>
+            </div>
+          </div>
+          <div class="ex-links">
+            <a class="yt-btn" href="https://www.youtube.com/results?search_query=overhead+press+proper+form+barbell+shoulder+press+tutorial" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+              WATCH TUTORIAL
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Seated Cable Row -->
+      <div class="ex-card">
+        <div class="ex-card-top">
+          <div class="ex-num">04</div>
+          <div class="ex-top-info">
+            <div class="ex-name">SEATED CABLE ROW</div>
+            <div class="ex-sets">
+              <span class="pill pill-gold">3 SETS</span>
+              <span class="pill pill-cyan">10 REPS</span>
+              <span class="pill pill-red">VOLUME</span>
+            </div>
+          </div>
+        </div>
+        <div class="ex-card-body">
+          <div class="ex-section">
+            <div class="ex-section-title">What it does to your body</div>
+            <p>Builds mid-back thickness — the rhomboids and middle trapezius. A thick mid-back is what creates that "3D back" look when you take your shirt off. Also critically improves posture by countering the rounded shoulders from years of laptop work. Directly combats the forward head posture and hunched back that comes from sedentary years.</p>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div>
+            <ul>
+              <li>Sit upright, chest up — never round your back</li>
+              <li>Pull handle to your lower sternum (not your navel)</li>
+              <li>Squeeze shoulder blades together hard at the contracted position</li>
+              <li>1 second hold at peak contraction — feel the mid-back squeeze</li>
+              <li>Control the weight on the way out (2 sec negative)</li>
+              <li>Keep elbows close to your body — not flaring out wide</li>
+            </ul>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">Alternate exercises</div>
+            <div class="ex-alts">
+              <div class="alt-item">Dumbbell Bent-Over Row (one arm at a time, great range)</div>
+              <div class="alt-item">T-Bar Row Machine (if available at Cult Elite LB Nagar)</div>
+            </div>
+          </div>
+          <div class="ex-links">
+            <a class="yt-btn" href="https://www.youtube.com/results?search_query=seated+cable+row+proper+form+back+tutorial" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+              WATCH TUTORIAL
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Lateral Raise -->
+      <div class="ex-card">
+        <div class="ex-card-top">
+          <div class="ex-num">05</div>
+          <div class="ex-top-info">
+            <div class="ex-name">DUMBBELL LATERAL RAISE</div>
+            <div class="ex-sets">
+              <span class="pill pill-gold">3 SETS</span>
+              <span class="pill pill-cyan">15 REPS</span>
+              <span class="pill pill-red">ISOLATION</span>
+            </div>
+          </div>
+        </div>
+        <div class="ex-card-body">
+          <div class="ex-section">
+            <div class="ex-section-title">What it does to your body</div>
+            <p>Isolates the medial (side) deltoid head — the muscle responsible for shoulder width. This is the most visual muscle for creating broad shoulders. Even small increases in medial delt size dramatically change how wide your upper body appears. CR7's broad shoulders are a product of high lateral raise volume.</p>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div>
+            <ul>
+              <li>Use LIGHT weight — ego lifting here causes impingement injury</li>
+              <li>Lead with your pinky (like pouring a glass of water) — not thumbs</li>
+              <li>Raise to shoulder height maximum — no higher</li>
+              <li>Slight elbow bend, do NOT lock elbows straight</li>
+              <li>Slow 3-second lowering — the negative builds the muscle</li>
+              <li>Do NOT swing your body — strict form only</li>
+            </ul>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">Alternate exercises</div>
+            <div class="ex-alts">
+              <div class="alt-item">Cable Lateral Raise (constant tension throughout movement, superior)</div>
+              <div class="alt-item">Machine Lateral Raise (if available, easier to isolate)</div>
+            </div>
+          </div>
+          <div class="ex-links">
+            <a class="yt-btn" href="https://www.youtube.com/results?search_query=lateral+raise+proper+form+shoulder+width+tutorial" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+              WATCH TUTORIAL
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Triceps Pushdown -->
+      <div class="ex-card">
+        <div class="ex-card-top">
+          <div class="ex-num">06</div>
+          <div class="ex-top-info">
+            <div class="ex-name">CABLE TRICEPS PUSHDOWN</div>
+            <div class="ex-sets">
+              <span class="pill pill-gold">3 SETS</span>
+              <span class="pill pill-cyan">12 REPS</span>
+              <span class="pill pill-red">PUMP</span>
+            </div>
+          </div>
+        </div>
+        <div class="ex-card-body">
+          <div class="ex-section">
+            <div class="ex-section-title">What it does to your body</div>
+            <p>Triceps make up 2/3 of your upper arm mass. If you want big arms, you need big triceps — not just biceps. Cable pushdown isolates the lateral and medial heads, creating the horseshoe shape visible from behind. Defined arms are a key part of the athletic physique you're building.</p>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div>
+            <ul>
+              <li>Elbows pinned to your sides — do NOT let them move</li>
+              <li>Use rope attachment for better contraction (rotate wrists out at bottom)</li>
+              <li>Full extension at bottom, pause and squeeze</li>
+              <li>Return slowly — controlled eccentric</li>
+              <li>Stand upright, slight forward lean is acceptable</li>
+            </ul>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">Alternate exercises</div>
+            <div class="ex-alts">
+              <div class="alt-item">Skull Crushers with EZ Bar (heavy tricep mass builder)</div>
+              <div class="alt-item">Dumbbell Overhead Tricep Extension (long head stretch)</div>
+            </div>
+          </div>
+          <div class="ex-links">
+            <a class="yt-btn" href="https://www.youtube.com/results?search_query=cable+triceps+pushdown+rope+proper+form+tutorial" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+              WATCH TUTORIAL
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. EZ Bar Curl -->
+      <div class="ex-card">
+        <div class="ex-card-top">
+          <div class="ex-num">07</div>
+          <div class="ex-top-info">
+            <div class="ex-name">EZ BAR CURL</div>
+            <div class="ex-sets">
+              <span class="pill pill-gold">3 SETS</span>
+              <span class="pill pill-cyan">12 REPS</span>
+              <span class="pill pill-red">PUMP</span>
+            </div>
+          </div>
+        </div>
+        <div class="ex-card-body">
+          <div class="ex-section">
+            <div class="ex-section-title">What it does to your body</div>
+            <p>Builds biceps peak and brachialis thickness. The EZ bar reduces wrist strain compared to straight bar while still loading both bicep heads. Full bicep development creates that arm shape visible when you wear a t-shirt. The brachialis (under the bicep) pushes the bicep up, making it look taller and more peaked.</p>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div>
+            <ul>
+              <li>Elbows stay at your sides — do NOT swing your back for momentum</li>
+              <li>Full range: from full extension to full curl at top</li>
+              <li>Supinate (rotate) wrists at the top — extra bicep squeeze</li>
+              <li>2 second lowering phase — do NOT drop the weight</li>
+              <li>If you're swinging: the weight is too heavy — drop it</li>
+            </ul>
+          </div>
+          <div class="ex-section">
+            <div class="ex-section-title">Alternate exercises</div>
+            <div class="ex-alts">
+              <div class="alt-item">Dumbbell Alternating Curl (allows supination, great for peak)</div>
+              <div class="alt-item">Cable Curl (constant tension, ideal for pump finisher)</div>
+            </div>
+          </div>
+          <div class="ex-links">
+            <a class="yt-btn" href="https://www.youtube.com/results?search_query=ez+bar+curl+bicep+proper+form+tutorial" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+              WATCH TUTORIAL
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /exercises-grid mon -->
+  </div><!-- /day-mon -->
+
+  <!-- TUESDAY -->
+  <div class="workout-day" id="day-tue">
+    <div class="day-header">
+      <div>
+        <div class="day-name">TUESDAY</div>
+        <div class="day-focus">LOWER BODY STRENGTH · GLUTES + QUADS + HAMSTRINGS + CALVES + CORE</div>
+      </div>
+      <div class="day-meta">
+        <span>Duration</span><strong>60 MIN</strong>
+        <span style="margin-top:4px;">Rest between sets</span><strong>90 SEC</strong>
+      </div>
+    </div>
+    <div style="padding:14px 20px;background:rgba(0,212,255,0.06);border:1px solid var(--border2);border-radius:10px;margin-bottom:24px;font-size:.82rem;color:var(--muted);line-height:1.6;">
+      <strong style="color:var(--cyan);font-family:var(--font-display);letter-spacing:.08em;">TUESDAY FOCUS:</strong> Lower body is your engine. Strong legs burn the most calories at rest. Your quads and glutes are the largest muscle groups — training them releases the most anabolic hormones. Strong legs also reduce knee stress from your daily 10 km walking. This session builds the athlete foundation.
+    </div>
+    <div class="exercises-grid">
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">01</div><div class="ex-top-info"><div class="ex-name">BARBELL SQUAT</div><div class="ex-sets"><span class="pill pill-gold">4 SETS</span><span class="pill pill-cyan">6 REPS</span><span class="pill pill-red">HEAVY</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>The king of all exercises. Squats recruit every muscle in your lower body plus your entire core and spinal erectors. Heavy squats trigger the highest spike of testosterone and growth hormone of any exercise — directly accelerating fat loss and muscle gain simultaneously. For your goal of strong, athletic legs and abs, the squat is non-negotiable.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Bar position: high bar (on traps) for more quad emphasis</li><li>Stance: shoulder width, toes pointed 15–30° outward</li><li>Break at hips AND knees simultaneously — sit back AND down</li><li>Depth: at minimum parallel (thighs parallel to floor) — go deeper if mobile</li><li>Knees must track over toes — never cave inward</li><li>Chest tall throughout — do NOT let your torso fold forward</li><li>Drive up by pushing floor away — squeeze glutes at lockout</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Smith Machine Squat (safer for solo training, fixed bar path)</div><div class="alt-item">Goblet Squat with Dumbbell (perfect for learning pattern with heavy weight)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=barbell+squat+proper+form+tutorial+beginner+technique" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+          <div class="warn-box"><strong>⚠ KNEE PROTECTION</strong><p>At 97.4 kg, your knees carry significant load. Start with bodyweight or goblet squat for 2 weeks to learn the pattern. Use knee sleeves for warmth and proprioception. Spend 10 minutes on hip and ankle mobility before squatting.</p></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">02</div><div class="ex-top-info"><div class="ex-name">ROMANIAN DEADLIFT</div><div class="ex-sets"><span class="pill pill-gold">4 SETS</span><span class="pill pill-cyan">8 REPS</span><span class="pill pill-red">CONTROLLED</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>The premier hamstring and glute developer. RDL creates the posterior chain strength that gives legs their athletic shape. Strong hamstrings protect your knees and lower back. This movement stretches the hamstrings under load — the strongest growth stimulus possible for the back of your legs. Also develops glute thickness that gives the athletic posterior look.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Hinge at hips — NOT a squat. Push hips back as bar slides down your legs</li><li>Soft knee bend (15–20°) — keep throughout</li><li>Bar stays in contact with legs the entire movement</li><li>Flat back — neutral spine from head to tailbone</li><li>Lower until you feel hamstring stretch (usually mid-shin level)</li><li>Drive hips forward to stand — NOT pulling with lower back</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Dumbbell Romanian Deadlift (better for beginners, easier to maintain back position)</div><div class="alt-item">Leg Curl Machine (isolates hamstrings if form is still being learned)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=romanian+deadlift+RDL+proper+form+hamstring+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">03</div><div class="ex-top-info"><div class="ex-name">WALKING LUNGES</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">12 EACH LEG</span><span class="pill pill-red">UNILATERAL</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Unilateral leg training fixes muscle imbalances between legs. Works quads, glutes, hamstrings, and hip stabilizers all at once. The walking component adds balance and coordination — key for athletic movement like CR7. Also burns significantly more calories than bilateral movements due to instability and total muscle recruitment.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Long step — back knee should nearly touch the floor</li><li>Front knee stays behind your toes (shin vertical)</li><li>Keep torso upright throughout — do NOT lean forward</li><li>Drive through the front heel to step forward</li><li>Hold dumbbells at sides (start with bodyweight, add weight progressively)</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Reverse Lunge (easier on knees, same muscles, do in place)</div><div class="alt-item">Split Squat (stationary, easier to learn, same unilateral benefit)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=walking+lunges+proper+form+quads+glutes+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">04</div><div class="ex-top-info"><div class="ex-name">LEG PRESS MACHINE</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">10 REPS</span><span class="pill pill-red">VOLUME</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Allows you to safely load very heavy weight on quads and glutes without spinal compression. After the heavy squats, this builds additional quad volume. Higher foot placement targets glutes and hamstrings more; lower placement emphasizes quads. Machine safety means you can push to true muscular failure safely — maximizing growth stimulus.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Do NOT lock out knees completely at the top — keep slight bend</li><li>Lower to 90° knee angle minimum</li><li>Keep your lower back pressed into the seat pad throughout</li><li>Feet shoulder width apart for balanced development</li><li>Control the weight on the way down — do NOT let it drop</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Hack Squat Machine (if available — excellent quad isolation)</div><div class="alt-item">Front-Foot Elevated Split Squat (quad emphasis without machine)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=leg+press+machine+proper+form+quads+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">05</div><div class="ex-top-info"><div class="ex-name">STANDING CALF RAISE</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">15 REPS</span><span class="pill pill-red">FULL RANGE</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Develops the gastrocnemius (outer calf muscle). With 10 km of walking daily your calves are already doing significant work — this session finishes them for maximum development. Defined calves complete the athletic leg package and support ankle stability during all your walking and training.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Full range: from deep stretch at bottom to full peak contraction at top</li><li>2 second pause at peak — squeeze hard</li><li>Slow 3-second descent — this is where calf growth happens</li><li>Use a step edge for full stretch at bottom</li><li>Calves are stubborn — high reps and full range are essential</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Seated Calf Raise Machine (targets soleus — deeper calf muscle)</div><div class="alt-item">Single-Leg Bodyweight Calf Raise (on step edge, add weight in hand)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=standing+calf+raise+proper+form+full+range+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">06</div><div class="ex-top-info"><div class="ex-name">PLANK</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">40 SECONDS</span><span class="pill pill-red">CORE</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>The plank builds the deep core stabilizers — transverse abdominis and lumbar multifidus. These are the muscles that "pull your stomach in" and give the tight, flat belly appearance. Strong planking ability is the foundation for all the abdominal definition work. Also protects your lower back during heavy squats and deadlifts.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Forearms on ground, elbows under shoulders</li><li>Body forms a STRAIGHT line — no sagging hips, no raised buttocks</li><li>Squeeze glutes, quads, and abs simultaneously</li><li>Breathe normally — do NOT hold your breath</li><li>If 40 sec is easy: progress to 60 sec, then add weight plate on back</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Dead Bug (activates deep core, safer on lower back)</div><div class="alt-item">Hollow Hold (gymnastic core tension, brutal but effective)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=plank+proper+form+core+stability+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /day-tue -->
+
+  <!-- WEDNESDAY -->
+  <div class="workout-day" id="day-wed">
+    <div class="day-header">
+      <div><div class="day-name">WEDNESDAY</div><div class="day-focus">CORE + CONDITIONING · BELLY FAT DESTROYER + CORE STRENGTH</div></div>
+      <div class="day-meta"><span>Duration</span><strong>45 MIN</strong><span style="margin-top:4px;">Focus</span><strong>FAT BURN</strong></div>
+    </div>
+    <div style="padding:14px 20px;background:rgba(255,59,59,0.06);border:1px solid rgba(255,59,59,0.2);border-radius:10px;margin-bottom:24px;font-size:.82rem;color:rgba(255,160,160,0.8);line-height:1.6;">
+      <strong style="color:var(--red);font-family:var(--font-display);letter-spacing:.08em;">WEDNESDAY IS YOUR BELLY FAT SESSION.</strong> This day is specifically designed to attack your central abdominal fat and build the deep core structure that will become your 6-pack. Visceral fat responds best to this combination of core resistance + conditioning cardio.
+    </div>
+    <div class="exercises-grid">
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">01</div><div class="ex-top-info"><div class="ex-name">HANGING LEG RAISE</div><div class="ex-sets"><span class="pill pill-gold">4 SETS</span><span class="pill pill-cyan">12 REPS</span><span class="pill pill-red">ABS</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>The most complete abdominal exercise. Hanging leg raises work the entire rectus abdominis from top to bottom but especially attack the LOWER abs — the area just above your belt line that is the last to show definition. They also work the hip flexors, serratus, and deep transverse abdominis. This exercise directly sculpts the 6-pack when combined with fat loss.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Dead hang from pull-up bar — no swinging</li><li>Curl pelvis FORWARD as you raise legs — this is the key contraction</li><li>Raise legs to at least 90° (parallel to floor) — higher if possible</li><li>Control the descent — 3 slow seconds down</li><li>If too hard: start with knee raises, progress to straight leg raises</li><li>Do NOT use momentum — if you swing, stop and reset</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Captain's Chair Leg Raise (supported, easier to isolate abs)</div><div class="alt-item">Lying Leg Raise on Bench (easiest version, perfect for beginners)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=hanging+leg+raise+lower+abs+proper+form+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">02</div><div class="ex-top-info"><div class="ex-name">CABLE WOODCHOPPER</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">12 EACH SIDE</span><span class="pill pill-red">OBLIQUES</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Attacks the obliques — the side ab muscles that frame the 6-pack and create the "cut" look from the sides. Strong obliques pull the waist in and define the athletic torso shape. The rotational movement pattern also burns belly fat by engaging the largest trunk muscles through their full range. This exercise makes your waist look smaller by strengthening the muscles that naturally hold it in.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Set cable at HIGH position for downward chop (obliques and core)</li><li>Feet shoulder width, standing sideways to machine</li><li>Arms straight — rotate from TRUNK, not arms</li><li>Plant feet — do NOT let hips rotate</li><li>Controlled motion — this is not about speed, it's about tension</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Dumbbell Woodchopper (same movement with dumbbell in both hands)</div><div class="alt-item">Pallof Press (anti-rotation core stability — available at cable machine)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=cable+woodchopper+obliques+core+rotation+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">03</div><div class="ex-top-info"><div class="ex-name">BACK EXTENSION</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">15 REPS</span><span class="pill pill-red">POSTERIOR</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Builds and strengthens the erector spinae (lower back muscles), glutes, and hamstrings. A strong lower back is what allows you to safely progress on squats and deadlifts. It also counteracts the forward-slumped posture from years of sitting. Strong back extensors keep your spine healthy under the load of your body weight and training.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Use the hyperextension bench (GHD or Roman chair) at Cult Elite</li><li>Hips resting on pad, feet secured on rollers</li><li>Start from parallel to floor (neutral back position)</li><li>Extend until your body forms a straight line — do NOT hyperextend beyond neutral</li><li>Hold 1 second at top, lower slowly</li><li>Add weight (plate to chest) when bodyweight becomes easy</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Superman Hold on Floor (3-5 second holds — no equipment needed)</div><div class="alt-item">Good Mornings with Barbell (standing version, targets same muscles)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=back+extension+hyperextension+lower+back+proper+form+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">04</div><div class="ex-top-info"><div class="ex-name">AB WHEEL ROLLOUT</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">12 REPS</span><span class="pill pill-red">FULL CORE</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Studies rank the ab wheel rollout as one of the most effective core exercises ever measured. It works the entire anterior core chain — rectus abdominis, transverse abdominis, obliques, lats, and shoulders — all at once. The anti-extension nature of the movement builds the core stability that protects your spine and creates the flat, hard stomach appearance even before all the fat is gone.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Start kneeling on a mat if you're a beginner</li><li>Core MUST be braced before you move — brace like you're about to be punched</li><li>Roll out only as far as you can maintain a flat back</li><li>Do NOT let your lower back arch — this is injury territory</li><li>Pull back by contracting abs — not by pushing with arms</li><li>Work toward full rollout from standing over months</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Cable Kneeling Crunch (excellent heavy core work with cable machine)</div><div class="alt-item">Stability Ball Rollout (same motion but easier — use if ab wheel unavailable)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=ab+wheel+rollout+proper+form+core+tutorial+beginner" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card" style="grid-column:1/-1;max-width:100%;">
+        <div class="ex-card-top"><div class="ex-num">05</div><div class="ex-top-info"><div class="ex-name">CONDITIONING FINISHER</div><div class="ex-sets"><span class="pill pill-gold">10 MIN</span><span class="pill pill-cyan">MODERATE PACE</span><span class="pill pill-red">FAT BURN</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>After core work, a 10-minute moderate cardio finisher pushes your body into elevated fat oxidation (fat burning). Your glycogen is low after core training — this means the cardio energy comes primarily from fat stores. Specifically targets visceral fat over weeks of consistent application.</p></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:12px;">
+            <div style="background:rgba(212,175,55,0.07);border:1px solid var(--border);border-radius:10px;padding:16px;"><div style="font-family:var(--font-display);font-size:1rem;color:var(--gold);margin-bottom:8px;">OPTION 1: ROWING MACHINE</div><p style="font-size:.78rem;color:var(--muted);">10 min at steady 70% heart rate. Best full-body cardio available at Cult Elite.</p></div>
+            <div style="background:rgba(0,212,255,0.05);border:1px solid var(--border2);border-radius:10px;padding:16px;"><div style="font-family:var(--font-display);font-size:1rem;color:var(--cyan);margin-bottom:8px;">OPTION 2: STATIONARY BIKE</div><p style="font-size:.78rem;color:var(--muted);">10 min moderate resistance cycling. Zero knee impact — ideal for recovery days.</p></div>
+            <div style="background:rgba(255,59,59,0.05);border:1px solid rgba(255,59,59,0.15);border-radius:10px;padding:16px;"><div style="font-family:var(--font-display);font-size:1rem;color:var(--red);margin-bottom:8px;">OPTION 3: JUMP ROPE</div><p style="font-size:.78rem;color:var(--muted);">If available: 10 min skip intervals. Highest calorie burn per minute of any cardio.</p></div>
+          </div>
+          <div style="margin-top:12px;padding:12px 16px;background:rgba(255,255,255,0.03);border-radius:8px;font-size:.8rem;color:var(--muted);">📌 Finish with 10 minutes of full-body stretching: hip flexors, hamstrings, chest, lats. This improves recovery and prevents tightness from your daily walking.</div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /day-wed -->
+
+  <!-- THURSDAY -->
+  <div class="workout-day" id="day-thu">
+    <div class="day-header">
+      <div><div class="day-name">THURSDAY</div><div class="day-focus">UPPER HYPERTROPHY · SIZE + DEFINITION · CHEST + BACK + SHOULDERS + ARMS</div></div>
+      <div class="day-meta"><span>Duration</span><strong>60 MIN</strong><span style="margin-top:4px;">Rest between sets</span><strong>60–90 SEC</strong></div>
+    </div>
+    <div style="padding:14px 20px;background:rgba(212,175,55,0.07);border:1px solid var(--border);border-radius:10px;margin-bottom:24px;font-size:.82rem;color:var(--muted);line-height:1.6;">
+      <strong style="color:var(--gold);font-family:var(--font-display);letter-spacing:.08em;">THURSDAY FOCUS:</strong> Hypertrophy. More volume, shorter rest, higher reps than Monday. This is your size-building session. Monday built neural strength. Thursday builds muscle SIZE from that strength foundation. Together these two upper body sessions hit every muscle twice weekly — optimal for maximum growth.
+    </div>
+    <div class="exercises-grid">
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">01</div><div class="ex-top-info"><div class="ex-name">INCLINE DUMBBELL PRESS</div><div class="ex-sets"><span class="pill pill-gold">4 SETS</span><span class="pill pill-cyan">10 REPS</span><span class="pill pill-red">UPPER CHEST</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Incline press targets the UPPER pectoral (clavicular head) — the part of the chest that gives the chest that "shelf" appearance from the front. Upper chest development is what separates a flat chest from a fully developed athletic chest. Most people over-train flat press and under-develop upper chest. This directly creates the defined chest line visible at low body fat.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Bench at 30–45° incline (not higher — above 45° shifts to shoulders)</li><li>Dumbbells touch at top but do NOT crash them together</li><li>Lower to chest level — get a full stretch in the upper pec</li><li>Drive dumbbells up and slightly inward (like hugging a barrel)</li><li>Do NOT let elbows drop below bench level — this risks shoulder injury</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Incline Smith Machine Press (safer, great for heavy sets alone)</div><div class="alt-item">Low-to-High Cable Fly (isolates upper chest with constant tension)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=incline+dumbbell+press+upper+chest+proper+form+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">02</div><div class="ex-top-info"><div class="ex-name">LAT PULLDOWN / PULL-UPS</div><div class="ex-sets"><span class="pill pill-gold">4 SETS</span><span class="pill pill-cyan">8 REPS</span><span class="pill pill-red">V-TAPER</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Second back session of the week — this time for hypertrophy (size). The lat pulldown with slightly lighter weight and higher reps creates maximum muscle damage in the lats, promoting thickness and width growth. Combined with Monday's pull-ups, your back receives optimal training stimulus for transforming the physique.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Use a slightly lighter weight than Monday — focus on FEELING the lat contract</li><li>Lean back 15° — this puts lats in a more direct pulling angle</li><li>Pull to upper chest, not chin</li><li>Hold contraction at bottom for 1 full second — squeeze shoulder blades hard</li><li>Feel the stretch at the top — this eccentric stretch drives growth</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Assisted Pull-up Machine (if you cannot do 8 clean reps yet)</div><div class="alt-item">Single-Arm Cable Pulldown (unilateral — fixes imbalances)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=lat+pulldown+hypertrophy+back+width+proper+form+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">03</div><div class="ex-top-info"><div class="ex-name">DUMBBELL SHOULDER PRESS</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">10 REPS</span><span class="pill pill-red">BOULDER SHOULDERS</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Seated dumbbell press allows greater range of motion than barbell, hitting all three deltoid heads more completely. The independent dumbbell movement also corrects left-right shoulder imbalances. Combined with Monday's barbell OHP, your shoulders receive maximum stimulus for the wide, capped shoulder look that frames your entire physique.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Sit with back support — back is NOT the focus here</li><li>Start with dumbbells at ear level, elbows at 90°</li><li>Press directly overhead — do NOT press forward</li><li>Do NOT slam weights together at the top</li><li>Control the descent — 2 seconds down to full stretch at ears</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Arnold Press (Schwarzenegger's variation — hits all 3 heads, more complete)</div><div class="alt-item">Machine Shoulder Press (perfect for beginners, safe form)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press+seated+proper+form+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">04</div><div class="ex-top-info"><div class="ex-name">FACE PULLS</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">15 REPS</span><span class="pill pill-red">REAR DELTS</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Face pulls are the most important corrective exercise you can do. They develop the rear deltoids and rotator cuff — muscles that are chronically underdeveloped from years of pushing exercises and desk posture. Strong rear delts create the 3D "capped" shoulder appearance from the side and rear. They also protect your shoulder joint from injury during all pressing movements. CR7's shoulders look as good from the side as from the front — face pulls are why.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Set cable at EYE HEIGHT or slightly above</li><li>Use rope attachment, pull toward your FACE (not neck)</li><li>Elbows must be at or ABOVE shoulder level throughout</li><li>External rotate at the end — pull rope apart and "show your armpits"</li><li>Never use heavy weight — this is all about form and muscle feel</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Band Pull-Apart (use resistance band — perfect rear delt activation)</div><div class="alt-item">Rear Delt Dumbbell Fly (bent-over, elbows slightly bent)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=face+pulls+rear+delt+rotator+cuff+proper+form+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">05</div><div class="ex-top-info"><div class="ex-name">LATERAL RAISES</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">15 REPS</span><span class="pill pill-red">WIDTH</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Second lateral raise session of the week. The medial delt requires high frequency and volume to grow. This session's lateral raises complete the weekly shoulder training with a metabolic pump finish that drives blood and nutrients into the shoulder tissue. This is what builds the wide, capped shoulder look over months.</p></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Cable Lateral Raise (superior constant tension — if cables available)</div><div class="alt-item">Plate Lateral Raise (hold weight plate with both hands, swing out to sides)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=lateral+raise+medial+delt+shoulder+width+hypertrophy+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">06</div><div class="ex-top-info"><div class="ex-name">BICEPS CURL</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">12 REPS</span><span class="pill pill-red">PUMP</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Hammer Curl with Dumbbells (works brachialis for arm thickness)</div><div class="alt-item">Concentration Curl (maximum bicep peak isolation)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=bicep+curl+dumbbell+proper+form+peak+hypertrophy+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">07</div><div class="ex-top-info"><div class="ex-name">TRICEPS DIPS</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">12 REPS</span><span class="pill pill-red">MASS</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Compound triceps movement using bodyweight + gravity. Dips work all three tricep heads simultaneously and also heavily engage the lower pecs. The long head (largest tricep head) gets a full stretch in the deep position — maximum growth stimulus. Combined with Monday's pushdowns, your triceps receive complete development.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Use parallel dip bars at Cult Elite gym</li><li>Lower until upper arms are at least parallel to floor</li><li>Keep torso slightly forward for chest/tricep emphasis</li><li>Do NOT lock elbows at top fully — keep tension</li><li>If bodyweight is too easy: add a dip belt with weight plates</li><li>If too hard: use assisted dip machine or bench dips</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Bench Dip (hands on bench behind you — easier variation)</div><div class="alt-item">Cable Overhead Tricep Extension (long head stretch — superior isolation)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=tricep+dips+proper+form+parallel+bars+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /day-thu -->
+
+  <!-- FRIDAY -->
+  <div class="workout-day" id="day-fri">
+    <div class="day-header">
+      <div><div class="day-name">FRIDAY</div><div class="day-focus">LOWER POWER · DEADLIFT · POSTERIOR CHAIN · EXPLOSIVE STRENGTH</div></div>
+      <div class="day-meta"><span>Duration</span><strong>60 MIN</strong><span style="margin-top:4px;">Rest (Deadlift)</span><strong>2–3 MIN</strong></div>
+    </div>
+    <div style="padding:14px 20px;background:rgba(255,59,59,0.07);border:1px solid rgba(255,59,59,0.2);border-radius:10px;margin-bottom:24px;font-size:.82rem;color:rgba(255,160,160,0.8);line-height:1.6;">
+      <strong style="color:var(--red);font-family:var(--font-display);letter-spacing:.08em;">FRIDAY = YOUR MOST IMPORTANT SESSION.</strong> The deadlift is the single most anabolic (muscle-building, fat-burning) compound movement in existence. Heavy deadlifts at the end of the week when your CNS is recovered from Tuesday squats will trigger the maximum hormonal response. Protect this session — never skip it.
+    </div>
+    <div class="exercises-grid">
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">01</div><div class="ex-top-info"><div class="ex-name">CONVENTIONAL DEADLIFT</div><div class="ex-sets"><span class="pill pill-gold">4 SETS</span><span class="pill pill-cyan">5 REPS</span><span class="pill pill-red">MAXIMUM WEIGHT</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>The deadlift works over 600 muscles simultaneously — more than any other movement. It builds your entire posterior chain: hamstrings, glutes, erectors, traps, lats, forearms, and core. Heavy deadlifts produce the highest spike of testosterone and growth hormone of any exercise. For visceral fat specifically, heavy compound training like the deadlift is the most scientifically proven intervention. Every kilogram added to your deadlift directly accelerates your body transformation.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Feet hip-width, bar over mid-foot (about 1 inch from shins)</li><li>Grip just outside your legs — double overhand or mixed grip</li><li>Before pulling: PUSH the floor away, do NOT pull the bar up</li><li>Keep bar in contact with legs the entire lift (shins to thighs to hips)</li><li>Chest up, neutral spine — DO NOT let lower back round</li><li>At lockout: squeeze glutes, do NOT hyperextend back</li><li>Lower with control — do NOT drop the bar (gym rules + safety)</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Trap Bar Deadlift (if available — easier on back, same stimulus)</div><div class="alt-item">Rack Pull (deadlift from knee height — builds back and traps safely)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=deadlift+proper+form+tutorial+alan+thrall+beginners" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+          <div class="warn-box"><strong>⚠ CRITICAL WARNING</strong><p>DO NOT max out on deadlifts until you have 8 weeks of consistent practice. The first 8 weeks: learn the movement at 60% of your estimated max. Your lower back has been sedentary — it needs gradual loading. Never deadlift if your back is sore or fatigued.</p></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">02</div><div class="ex-top-info"><div class="ex-name">FRONT SQUAT</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">8 REPS</span><span class="pill pill-red">QUADS + CORE</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Front squats require an upright torso, placing maximum tension on the quadriceps while forcing deep core bracing. This movement develops the quad muscles that give your legs their defined, athletic shape from the front. The upright position also dramatically improves posture. More core-demanding than back squat — directly contributes to abdominal strength.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Bar rests on front deltoids (not hands) — cross-arm or clean grip</li><li>Elbows HIGH throughout — if elbows drop, bar rolls forward and you dump it</li><li>More upright torso than back squat — chest stays tall</li><li>Can be very uncomfortable at first — mobility will improve with practice</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Goblet Squat with Heavy Dumbbell (same upright position, easier to learn)</div><div class="alt-item">Dumbbell Front Squat (hold dumbbells at shoulders — same quad emphasis)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=front+squat+proper+form+tutorial+quad+dominant" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">03</div><div class="ex-top-info"><div class="ex-name">BULGARIAN SPLIT SQUAT</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">10 EACH LEG</span><span class="pill pill-red">GLUTE BUILDER</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Called "the squat killer" — it may be the best single-leg exercise ever devised. The elevated rear foot increases hip flexor stretch and glute activation far beyond regular lunges. This builds glute size and hip strength that translates directly to athletic power and gives your lower body the complete, symmetrical development that marks an elite athlete.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Rear foot elevated on bench (laces down) — front foot far enough forward that knee stays over ankle</li><li>Lower until front thigh is parallel — rear knee toward floor</li><li>Drive up through the front heel — push the floor away</li><li>Keep torso upright — slight forward lean is acceptable</li><li>Hold dumbbells at sides or use barbell on back</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Step-Up with Dumbbell (onto a box or bench — great glute builder)</div><div class="alt-item">Reverse Lunge (stationary, easier balance, same muscle pattern)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=bulgarian+split+squat+proper+form+tutorial+glute+quad" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">04</div><div class="ex-top-info"><div class="ex-name">HIP THRUST</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">12 REPS</span><span class="pill pill-red">GLUTES</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>The hip thrust is the most direct glute-isolation compound exercise. Research shows it activates the gluteus maximus more than any other exercise. Strong glutes are your body's largest muscle group — they are your primary fat-burning engine, protect your knees and lower back, and create the powerful athletic stride. CR7's explosive pace and athletic movement comes from glute power.</p></div>
+          <div class="ex-section"><div class="ex-section-title">NON-NEGOTIABLE INSTRUCTIONS</div><ul><li>Upper back against bench, barbell across hip crease (use pad for comfort)</li><li>Feet flat, shoulder width, knees bent at 90° when at top</li><li>Drive hips UP by squeezing glutes hard — do NOT arch lower back</li><li>At top: shins vertical, glutes fully contracted, hold 1 second</li><li>Lower slowly — 2 seconds descent</li></ul></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Glute Bridge on Floor (same movement, no weight — great for beginners)</div><div class="alt-item">Cable Kickback (standing, isolates glute max directly)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=hip+thrust+barbell+proper+form+glute+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">05</div><div class="ex-top-info"><div class="ex-name">SEATED CALF RAISE</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">15 REPS</span><span class="pill pill-red">SOLEUS</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Seated calf raise specifically targets the SOLEUS (beneath the gastrocnemius). The soleus is the muscle that gives calves their width and fullness when relaxed. Combined with Tuesday's standing raises, you develop both calf heads completely — matching your upper body development for a proportionate athletic physique.</p></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Leg Press Calf Raise (at the bottom of the leg press, balls of feet on plate)</div><div class="alt-item">Smith Machine Calf Raise (standing, bar across shoulders)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=seated+calf+raise+soleus+proper+form+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num">06</div><div class="ex-top-info"><div class="ex-name">HANGING LEG RAISE</div><div class="ex-sets"><span class="pill pill-gold">3 SETS</span><span class="pill pill-cyan">12 REPS</span><span class="pill pill-red">ABS FINISHER</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Second weekly session of hanging leg raises. Frequency is key for abdominal development. This end-of-week session hits the lower abs with a metabolic stress signal that builds the definition you'll see when body fat drops to 15%. Your hip flexors will also be strengthened, improving your athletic gait and reducing knee stress from walking.</p></div>
+          <div class="ex-section"><div class="ex-section-title">Alternate exercises</div><div class="ex-alts"><div class="alt-item">Cable Crunch (kneeling, pulling rope to forehead — heavy, effective)</div><div class="alt-item">Reverse Crunch on Bench (lying, curling pelvis up — great lower ab isolation)</div></div></div>
+          <div class="ex-links"><a class="yt-btn" href="https://www.youtube.com/results?search_query=hanging+leg+raise+lower+abs+form+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>WATCH TUTORIAL</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /day-fri -->
+
+  <!-- SATURDAY -->
+  <div class="workout-day" id="day-sat">
+    <div class="day-header">
+      <div><div class="day-name">SATURDAY</div><div class="day-focus">ATHLETIC CONDITIONING · CHOOSE ONE: BOXING / SPRINT HIIT / AGILITY</div></div>
+      <div class="day-meta"><span>Duration</span><strong>45 MIN</strong><span style="margin-top:4px;">Intensity</span><strong>HIGH</strong></div>
+    </div>
+    <div style="padding:14px 20px;background:rgba(0,212,255,0.07);border:1px solid var(--border2);border-radius:10px;margin-bottom:24px;font-size:.82rem;color:var(--muted);line-height:1.6;">
+      <strong style="color:var(--cyan);font-family:var(--font-display);letter-spacing:.08em;">SATURDAY = ATHLETE MODE.</strong> This session is what separates a gym body from an ATHLETIC body. CR7 is not just muscular — he moves like an athlete. Saturday builds that movement quality. Choose a different option each week to train different energy systems.
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;">
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num" style="font-size:2rem;">🥊</div><div class="ex-top-info"><div class="ex-name">OPTION 1: BOXING DRILLS</div><div class="ex-sets"><span class="pill pill-gold">45 MIN</span><span class="pill pill-red">FULL BODY CARDIO</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Boxing burns 600–800 kcal/hour — one of the highest fat-burning activities possible. It also develops coordination, reflexes, core rotation power, shoulder endurance, and cardiovascular fitness. Shadow boxing + bag work creates the explosive upper body athleticism that CR7 uses in his training programs.</p></div>
+          <table style="width:100%;border-collapse:collapse;margin-top:12px;font-size:.78rem;">
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--muted);">Shadow Boxing Warm-up</td><td style="text-align:right;color:var(--gold);font-family:var(--font-mono);">10 MIN</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--muted);">Heavy Bag Rounds (2 min on / 1 min rest)</td><td style="text-align:right;color:var(--gold);font-family:var(--font-mono);">6 ROUNDS</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--muted);">Footwork Drills</td><td style="text-align:right;color:var(--gold);font-family:var(--font-mono);">10 MIN</td></tr>
+            <tr><td style="padding:6px 0;color:var(--muted);">Core Work (plank + rotations)</td><td style="text-align:right;color:var(--gold);font-family:var(--font-mono);">10 MIN</td></tr>
+          </table>
+          <div class="ex-links" style="margin-top:14px;"><a class="yt-btn" href="https://www.youtube.com/results?search_query=boxing+shadowboxing+training+workout+tutorial+fat+loss" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>BOXING TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num" style="font-size:2rem;">⚡</div><div class="ex-top-info"><div class="ex-name">OPTION 2: SPRINT HIIT</div><div class="ex-sets"><span class="pill pill-gold">8–10 ROUNDS</span><span class="pill pill-red">ANAEROBIC</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Sprint HIIT creates an "afterburn" effect (EPOC — Excess Post-exercise Oxygen Consumption) that burns fat for 24–48 hours after the session ends. Short sprints with full recovery build explosive power and metabolic flexibility — the ability to burn fat efficiently. Most effective of all cardio methods for visceral fat specifically.</p></div>
+          <div style="background:rgba(255,59,59,0.07);border-radius:8px;padding:14px;margin-top:12px;">
+            <div style="font-family:var(--font-mono);font-size:.7rem;color:var(--red);letter-spacing:.2em;margin-bottom:10px;">PROTOCOL</div>
+            <div style="font-size:.82rem;color:var(--muted);line-height:2;">
+              Sprint: <span style="color:var(--gold);">20 seconds MAXIMUM effort</span><br>
+              Walk: <span style="color:var(--text);">100 seconds complete rest</span><br>
+              Repeat: <span style="color:var(--gold);">8–10 rounds</span><br>
+              Warm-up: <span style="color:var(--text);">5 min easy jog first</span>
+            </div>
+          </div>
+          <div class="ex-links" style="margin-top:14px;"><a class="yt-btn" href="https://www.youtube.com/results?search_query=sprint+HIIT+training+fat+loss+tutorial+beginners" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>SPRINT HIIT TUTORIAL</a></div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-card-top"><div class="ex-num" style="font-size:2rem;">🏃</div><div class="ex-top-info"><div class="ex-name">OPTION 3: AGILITY TRAINING</div><div class="ex-sets"><span class="pill pill-gold">30 MIN</span><span class="pill pill-red">ATHLETIC</span></div></div></div>
+        <div class="ex-card-body">
+          <div class="ex-section"><div class="ex-section-title">What it does to your body</div><p>Builds the lateral speed, change-of-direction ability, and footwork that defines athletic movement. Your cricket and badminton background gives you a natural foundation. This session brings your nervous system's athletic capability back — building the movement quality that makes CR7's physique look FUNCTIONAL, not just aesthetic.</p></div>
+          <div style="font-size:.8rem;color:var(--muted);line-height:2;margin-top:10px;">
+            ◆ &nbsp;Ladder drills: high knees, lateral shuffle, in-out<br>
+            ◆ &nbsp;Shuttle runs: 5m–10m–15m back and forth × 6<br>
+            ◆ &nbsp;Medicine ball slams: 3 × 15 (if available)<br>
+            ◆ &nbsp;Cone agility: figure-8 patterns<br>
+            ◆ &nbsp;Jump rope: 5 min moderate pace
+          </div>
+          <div class="ex-links" style="margin-top:14px;"><a class="yt-btn" href="https://www.youtube.com/results?search_query=agility+ladder+drills+athletic+training+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>AGILITY TUTORIAL</a></div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /day-sat -->
+
+  <!-- SUNDAY -->
+  <div class="workout-day" id="day-sun">
+    <div class="rest-card">
+      <h2>SUNDAY // REST DAY</h2>
+      <p>Rest is not optional — it is where your body BUILDS the muscle that you stimulated during the week. Growth hormone peaks during deep sleep. Skipping rest days is the fastest way to stall progress. You walked ~60 km this week and trained 6 sessions. Your body NEEDS this day.</p>
+      <div class="rest-activities">
+        <div class="rest-act">😴 Sleep 8–9 hours</div>
+        <div class="rest-act">🚶 Light 2–3 km walk (optional, easy pace)</div>
+        <div class="rest-act">🧘 10–15 min stretching</div>
+        <div class="rest-act">📋 Meal prep for the week</div>
+        <div class="rest-act">💧 Hydrate 4–4.5 L</div>
+        <div class="rest-act">📊 Track progress photos</div>
+      </div>
+    </div>
+  </div><!-- /day-sun -->
+
+</section>
+</div><!-- /page-workout -->
+
+<!-- DIET PAGE -->
+<div id="page-diet" style="display:none;">
+<section id="diet-section">
+  <div class="section-header reveal">
+    <div class="section-num">03</div>
+    <div class="section-title-wrap">
+      <div class="section-tag">2350–2450 kcal · 165g Protein · The Whole Truth Whey · Mon–Sun</div>
+      <div class="section-title">ELITE <span class="accent">NUTRITION</span></div>
+    </div>
+  </div>
+
+  <!-- MACROS BANNER -->
+  <div class="diet-macro-banner reveal">
+    <div class="diet-macro-cell kcal"><div class="diet-macro-big">2407</div><div class="diet-macro-lbl">Calories</div><div class="diet-macro-note">target 2350–2400</div></div>
+    <div class="diet-macro-cell prot"><div class="diet-macro-big" style="color:var(--cyan)">167g</div><div class="diet-macro-lbl">Protein</div><div class="diet-macro-note">1.7g per kg muscle</div></div>
+    <div class="diet-macro-cell carb"><div class="diet-macro-big" style="color:#FFD700">281g</div><div class="diet-macro-lbl">Carbs</div><div class="diet-macro-note">glycogen fuel</div></div>
+    <div class="diet-macro-cell fat"><div class="diet-macro-big" style="color:rgba(255,160,40,0.9)">55g</div><div class="diet-macro-lbl">Fat</div><div class="diet-macro-note">hormones + health</div></div>
+    <div class="diet-macro-cell fiber"><div class="diet-macro-big" style="color:rgba(100,220,100,0.9)">36g</div><div class="diet-macro-lbl">Fiber</div><div class="diet-macro-note">gut health</div></div>
+    <div class="diet-macro-cell" style="border-right:none;"><div class="diet-macro-big" style="color:var(--cyan)">4.9L</div><div class="diet-macro-lbl">Water</div><div class="diet-macro-note">4.4L + 500ml salted</div></div>
+  </div>
+
+  <!-- WATER PROTOCOL -->
+  <div class="water-card reveal">
+    <div class="water-icon-big">💧</div>
+    <div class="water-info">
+      <div class="water-title">DAILY WATER PROTOCOL</div>
+      <p style="font-size:.82rem;color:rgba(240,239,232,0.7);line-height:1.6;margin-bottom:12px;">Your daily water is split into two components: clean water for hydration and electrolyte-salted warm water to replenish sodium lost during your 10 km walk + gym sessions.</p>
+      <div class="water-blocks">
+        <div class="water-block"><div class="water-block-val">500 ml</div><div class="water-block-lbl">Warm Salted Water</div><div style="font-size:.68rem;color:rgba(240,239,232,0.5);margin-top:4px;">Morning · pinch pink salt</div></div>
+        <div class="water-block"><div class="water-block-val">4.4 L</div><div class="water-block-lbl">Regular Water</div><div style="font-size:.68rem;color:rgba(240,239,232,0.5);margin-top:4px;">Spread across the day</div></div>
+        <div class="water-block" style="border-color:rgba(212,175,55,0.25);background:rgba(212,175,55,0.06)"><div class="water-block-val" style="color:var(--gold)">4.9 L</div><div class="water-block-lbl" style="color:var(--gold)">Total Daily</div><div style="font-size:.68rem;color:rgba(240,239,232,0.5);margin-top:4px;">Optimal for your load</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY TABS -->
+  <div class="diet-day-tabs reveal" id="diet-day-tabs">
+    <button class="diet-day-tab active" onclick="setDietDay('mon',this)">MON</button>
+    <button class="diet-day-tab" onclick="setDietDay('tue',this)">TUE</button>
+    <button class="diet-day-tab" onclick="setDietDay('wed',this)">WED</button>
+    <button class="diet-day-tab" onclick="setDietDay('thu',this)">THU</button>
+    <button class="diet-day-tab" onclick="setDietDay('fri',this)">FRI</button>
+    <button class="diet-day-tab" onclick="setDietDay('sat',this)">SAT</button>
+    <button class="diet-day-tab sunday-tab" onclick="setDietDay('sun',this)">SUN</button>
+  </div>
+
+  <!-- DIET DAY CONTENT — rendered by JS -->
+  <div id="diet-days-container"></div>
+
+  <!-- WEEKLY NOTES -->
+  <div class="diet-weekly-notes reveal" style="margin-top:48px;">
+    <div class="diet-note-card">
+      <div class="diet-note-title">🐟 FISH DAY — ONCE PER WEEK</div>
+      <div class="diet-note-text">Replace lunch chicken (200g) with 200g fish (rohu, katla, pomfret, or salmon). Massive omega-3 boost reduces systemic inflammation and accelerates visceral fat loss. Best on a Tuesday or Wednesday mid-week.</div>
+    </div>
+    <div class="diet-note-card">
+      <div class="diet-note-title">🥛 OPTIONAL PRE-SLEEP</div>
+      <div class="diet-note-text">200ml warm milk before bed adds +6g casein protein (slow-digesting) for overnight muscle recovery. Reduce dinner rice by 50g to compensate and stay within your calorie target.</div>
+    </div>
+    <div class="diet-note-card">
+      <div class="diet-note-title">🥄 CURD DAILY OPTION</div>
+      <div class="diet-note-text">Add 150g plain curd at lunch for +6g protein, probiotics for gut health, and calcium. Curd significantly improves insulin sensitivity — especially beneficial at your current body fat percentage.</div>
+    </div>
+    <div class="diet-note-card">
+      <div class="diet-note-title">⚠️ WHEY CONFIRMATION</div>
+      <div class="diet-note-text">Using The Whole Truth Whey Concentrate, 1 scoop = 26g protein, 120 kcal. If unavailable on any day: replace with 2 extra egg whites + 100g extra chicken distributed across meals to hit 165g protein.</div>
+    </div>
+  </div>
+
+</section>
+</div><!-- /page-diet -->
+
+<!-- RULES PAGE -->
+<div id="page-rules" style="display:none;">
+<section>
+  <div class="section-header reveal">
+    <div class="section-num">04</div>
+    <div class="section-title-wrap">
+      <div class="section-tag">Non-Negotiable · Follow Every Day</div>
+      <div class="section-title">DAILY <span class="accent">LAWS</span></div>
+    </div>
+  </div>
+  <div class="rules-grid reveal">
+    <div class="rule-card"><div class="rule-icon">🌅</div><div><div class="rule-title">WAKE & WATER FIRST</div><div class="rule-text">Immediately upon waking: drink 500 ml warm water. This kickstarts metabolism, flushes overnight waste products, and prepares your digestive system. Non-negotiable. Every single day.</div></div></div>
+    <div class="rule-card"><div class="rule-icon">⏰</div><div><div class="rule-title">EAT WITHIN 45 MIN POST-WORKOUT</div><div class="rule-text">The anabolic window closes in 45–60 minutes. Whey protein + eggs + rice MUST be consumed within this window. This is when your muscles are maximally receptive to nutrients. Missing this wastes the entire gym session.</div></div></div>
+    <div class="rule-card"><div class="rule-icon">🥩</div><div><div class="rule-title">PROTEIN EVERY MEAL</div><div class="rule-text">Every single meal must contain a protein source. Skipping protein at any meal triggers muscle breakdown (catabolism) within hours. Your 165g daily protein is non-negotiable for muscle preservation during fat loss.</div></div></div>
+    <div class="rule-card"><div class="rule-icon">😴</div><div><div class="rule-title">SLEEP IS YOUR HORMONE THERAPY</div><div class="rule-text">7–8 hours of sleep is where 80% of your growth hormone is released. Poor sleep = cortisol spike = fat retention and muscle loss. No supplement replaces sleep. Lights off by 10:30–11 PM. No screens 30 min before bed.</div></div></div>
+    <div class="rule-card"><div class="rule-icon">📈</div><div><div class="rule-title">PROGRESSIVE OVERLOAD EVERY WEEK</div><div class="rule-text">Every single week, attempt EITHER +2.5 kg on compound lifts OR +1 additional rep per set. Without progressive overload, you maintain — you don't grow. Track your lifts in a notebook or phone every session.</div></div></div>
+    <div class="rule-card"><div class="rule-icon">🚫</div><div><div class="rule-title">NO EGO LIFTING</div><div class="rule-text">Your connective tissue was sedentary for 6 years. It does NOT recover at the same speed as muscle (muscle memory). Tendons and ligaments take 3–6 months to catch up. Ego lifting is the fastest way to a 3-month injury setback. Form first, always.</div></div></div>
+    <div class="rule-card"><div class="rule-icon">🦵</div><div><div class="rule-title">PROTECT YOUR KNEES</div><div class="rule-text">At 97.4 kg, your knees carry 3× body weight during squats and walking. Spend 10 min warming up lower body before leg day. Use knee sleeves if needed. Never lock out knees on leg press. Stop immediately if you feel sharp knee pain (not muscle soreness — that's different).</div></div></div>
+    <div class="rule-card"><div class="rule-icon">📸</div><div><div class="rule-title">PROGRESS PHOTOS WEEKLY</div><div class="rule-text">Take photos every Sunday morning (same lighting, same pose). Scale weight fluctuates daily by 1–2 kg due to water and food. Photos are the only true measure of body composition change. Do NOT judge progress by scale alone.</div></div></div>
+    <div class="rule-card"><div class="rule-icon">🧂</div><div><div class="rule-title">ELECTROLYTES WITH WATER</div><div class="rule-text">With 10 km daily walking + gym, you lose significant sodium, potassium, and magnesium through sweat. Add a pinch of pink Himalayan salt to 1–2 glasses of water daily. Low sodium causes fatigue, headaches, and poor gym performance that you'll mistakenly blame on sleep or diet.</div></div></div>
+    <div class="rule-card"><div class="rule-icon">🍚</div><div><div class="rule-title">DO NOT FEAR CARBS</div><div class="rule-text">You perform 10 km walking + 1 hr gym daily. You NEED 270g of carbohydrates. Carbohydrate restriction at this activity level destroys performance, causes muscle loss, and slows metabolism. White rice is your performance fuel — not your enemy.</div></div></div>
+    <div class="rule-card"><div class="rule-icon">🔄</div><div><div class="rule-title">SUNDAY = MANDATORY REST</div><div class="rule-text">Rest day is a TRAINING DAY for your nervous system, tendons, and hormonal recovery. Overtraining is real — it is characterized by declining strength, poor sleep, irritability, and fat retention. Honor your rest day as much as your training days.</div></div></div>
+    <div class="rule-card"><div class="rule-icon">🎯</div><div><div class="rule-title">FAT LOSS IS TOTAL BODY — NOT LOCAL</div><div class="rule-text">Belly crunches do NOT burn belly fat. Abdominal exercises build the muscle UNDER the fat. The fat is lost systemically through caloric deficit + hormonal optimization + training. Your program does all three. Trust the process, not spot-reduction myths.</div></div></div>
+  </div>
+</section>
+</div><!-- /page-rules -->
+
+<!-- PROGRESS PAGE -->
+<div id="page-progress" style="display:none;">
+<section>
+  <div class="section-header reveal">
+    <div class="section-num">05</div>
+    <div class="section-title-wrap">
+      <div class="section-tag">12-Month Transformation Roadmap</div>
+      <div class="section-title">EXPECTED <span class="accent">PROGRESS</span></div>
+    </div>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-phase">
+      <div class="phase-period">WEEKS 1–4</div>
+      <div class="phase-title">REACTIVATION</div>
+      <ul class="phase-items">
+        <li>Water weight loss: 2–3 kg</li>
+        <li>Improved aerobic capacity</li>
+        <li>Better digestion and sleep</li>
+        <li>Reduced bloating</li>
+        <li>Increased energy levels</li>
+        <li>Learning movement patterns</li>
+      </ul>
+    </div>
+    <div class="timeline-phase">
+      <div class="phase-period">MONTHS 2–3</div>
+      <div class="phase-title">FAT LOSS BEGINS</div>
+      <ul class="phase-items">
+        <li>Visible waist reduction</li>
+        <li>Strength gains in all lifts</li>
+        <li>2–3 kg actual fat loss</li>
+        <li>Face and neck slim down</li>
+        <li>Improved posture visible</li>
+        <li>Clothes fitting better</li>
+      </ul>
+    </div>
+    <div class="timeline-phase">
+      <div class="phase-period">MONTHS 4–6</div>
+      <div class="phase-title">VISIBLE CHANGES</div>
+      <ul class="phase-items">
+        <li>Shoulder width noticeably wider</li>
+        <li>Chest definition visible</li>
+        <li>Arms showing shape</li>
+        <li>5–7 kg total fat loss</li>
+        <li>Weight: ~88–90 kg range</li>
+        <li>Bench: ~80–90 kg possible</li>
+      </ul>
+    </div>
+    <div class="timeline-phase">
+      <div class="phase-period">MONTHS 7–12</div>
+      <div class="phase-title">ELITE PHYSIQUE</div>
+      <ul class="phase-items">
+        <li>Abs visible (if BF% below 18%)</li>
+        <li>V-taper pronounced</li>
+        <li>Weight: 78–82 kg range</li>
+        <li>Body fat: approaching 15–18%</li>
+        <li>Deadlift: 130–150 kg target</li>
+        <li>Squat: 100–120 kg target</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Strength Targets -->
+  <div style="margin-top:48px;" class="reveal">
+    <div style="font-family:var(--font-display);font-size:2rem;letter-spacing:.1em;color:var(--gold);margin-bottom:24px;">STRENGTH PROGRESSION TARGETS</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+      <div class="stat-card" style="padding:24px;">
+        <div class="stat-label">Bench Press</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+          <div><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--muted);">START</div><div style="font-family:var(--font-display);font-size:1.4rem;color:var(--muted);">Assess</div></div>
+          <div style="color:var(--gold);font-size:1.2rem;">→</div>
+          <div><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--muted);">6 MONTHS</div><div style="font-family:var(--font-display);font-size:1.4rem;color:var(--gold);">90 kg</div></div>
+        </div>
+      </div>
+      <div class="stat-card" style="padding:24px;">
+        <div class="stat-label">Barbell Squat</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+          <div><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--muted);">START</div><div style="font-family:var(--font-display);font-size:1.4rem;color:var(--muted);">Assess</div></div>
+          <div style="color:var(--gold);font-size:1.2rem;">→</div>
+          <div><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--muted);">6 MONTHS</div><div style="font-family:var(--font-display);font-size:1.4rem;color:var(--gold);">120 kg</div></div>
+        </div>
+      </div>
+      <div class="stat-card" style="padding:24px;">
+        <div class="stat-label">Deadlift</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+          <div><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--muted);">START</div><div style="font-family:var(--font-display);font-size:1.4rem;color:var(--muted);">Assess</div></div>
+          <div style="color:var(--gold);font-size:1.2rem;">→</div>
+          <div><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--muted);">6 MONTHS</div><div style="font-family:var(--font-display);font-size:1.4rem;color:var(--gold);">150 kg</div></div>
+        </div>
+      </div>
+      <div class="stat-card" style="padding:24px;">
+        <div class="stat-label">Overhead Press</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+          <div><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--muted);">START</div><div style="font-family:var(--font-display);font-size:1.4rem;color:var(--muted);">Assess</div></div>
+          <div style="color:var(--gold);font-size:1.2rem;">→</div>
+          <div><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--muted);">6 MONTHS</div><div style="font-family:var(--font-display);font-size:1.4rem;color:var(--gold);">60 kg</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body Composition Journey -->
+  <div style="margin-top:48px;padding:32px;background:linear-gradient(135deg,rgba(212,175,55,0.08),rgba(0,212,255,0.04));border:1px solid var(--border);border-radius:16px;" class="reveal">
+    <div style="font-family:var(--font-display);font-size:1.8rem;letter-spacing:.1em;color:var(--gold);margin-bottom:20px;">BODY COMPOSITION JOURNEY</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+      <div style="padding:20px;border-right:1px solid var(--border);">
+        <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--muted);letter-spacing:.2em;margin-bottom:8px;">NOW</div>
+        <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--red);">97.4 kg</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:4px;">~30% BF · ~68.2 kg lean</div>
+      </div>
+      <div style="padding:20px;border-right:1px solid var(--border);background:rgba(212,175,55,0.04);">
+        <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--muted);letter-spacing:.2em;margin-bottom:8px;">6 MONTHS</div>
+        <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--gold);">~87 kg</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:4px;">~20% BF · ~69–70 kg lean</div>
+      </div>
+      <div style="padding:20px;">
+        <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--muted);letter-spacing:.2em;margin-bottom:8px;">12 MONTHS</div>
+        <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--cyan);">75–80 kg</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:4px;">12–15% BF · 66–68 kg lean</div>
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:.82rem;color:var(--muted);line-height:1.7;">Note: Lean mass may slightly decrease at target weight due to natural recomposition — this is normal. The GOAL is to preserve as much of your 38.8 kg muscle mass as possible while losing the 17–20 kg of excess fat. At 178 cm and 75–80 kg with 12–15% body fat, you will have a genuinely CR7-level athletic physique.</p>
+  </div>
+
+</section>
+</div><!-- /page-progress -->
+
+<!-- FOOTER -->
+<footer style="display:none;" id="footer-el">
+  <p>KIRAN // ELITE ATHLETIC TRANSFORMATION PROGRAM &nbsp;·&nbsp; <span>CULT ELITE GYM, LB NAGAR</span> &nbsp;·&nbsp; Prepared for professional verification &nbsp;·&nbsp; Follow consistently for 12 months</p>
+</footer>
+
+<script>
+// ══════════════════════════════════════
+// PREMIUM DIET ENGINE — FULL DATA
+// ══════════════════════════════════════
+
+// Food item detail database
+const FOOD_DB = {
+  warm_salt_water: {
+    emoji:'💧', name:'Warm Water (with Pink Salt)', qty:'500 ml', cal:'0 kcal', tag:'Hydration + Electrolytes',
+    what:'500 ml of warm (not hot) water with a small pinch of pink Himalayan salt dissolved in it. The very first thing consumed every morning before any food.',
+    provides:'0 kcal · Sodium · Potassium · 84+ trace minerals from Himalayan salt · Pure hydration',
+    where:'Meal 1 — Early Morning Wake (06:00) · First thing before dates, figs, or any solid food',
+    goodfor:'Kickstarts metabolism after 8+ hours of overnight fast · Flushes metabolic waste built up during sleep · Replenishes sodium and electrolytes lost overnight through respiration and sweat · Prepares the digestive tract for incoming food · At 97.4 kg with 10 km daily walks, pre-loading sodium in the morning prevents muscle cramps and fatigue during your morning workout walk'
+  },
+  dates: {
+    emoji:'🌴', name:'Soaked Date (Khajoor)', qty:'1 large date (8 g)', cal:'23 kcal', tag:'Quick Natural Sugar + Potassium',
+    what:'1 large date soaked overnight in water. Soaking softens the date, partially breaks down fibers, and improves digestibility. Eat with the soaking water or rinse and eat.',
+    provides:'23 kcal · 6g carbs · 0.2g protein · 0.6g fiber · Potassium · Iron · Natural glucose + fructose',
+    where:'Meal 1 — Early Morning (06:00) · Eaten with soaked figs, almonds, and walnuts',
+    goodfor:'Natural glucose provides immediate gentle brain activation upon waking without spiking insulin · Potassium helps prevent muscle cramps during your morning 5 km walk to gym · Iron supports red blood cell production — critical for oxygen delivery during your 10 km daily walk total · Soaking removes tannins making digestion smoother on an empty stomach'
+  },
+  anjeer: {
+    emoji:'🫐', name:'Soaked Dried Fig (Anjeer)', qty:'1 soaked fig (10 g)', cal:'25 kcal', tag:'Calcium + Iron + Fiber',
+    what:'1 dried fig soaked overnight in water. Soaking re-hydrates the fig and activates its natural enzymes. Anjeer is one of the rare non-dairy foods with significant bioavailable calcium.',
+    provides:'25 kcal · 6g carbs · 0.3g protein · 1g fiber · Calcium (35 mg) · Iron · Vitamin B6',
+    where:'Meal 1 — Early Morning (06:00) · Eaten alongside soaked date, almonds, and walnuts',
+    goodfor:'Calcium for bone density — essential when doing compound lifts and walking 10 km daily at 97.4 kg bodyweight · Iron supports oxygen transport during aerobic activity · 1g fiber activates gut motility first thing in the morning · Natural prebiotic feeds beneficial gut bacteria · Anti-inflammatory compounds specifically reduce joint inflammation — important for your knee health at high bodyweight'
+  },
+  almonds: {
+    emoji:'🤎', name:'Soaked Almonds', qty:'8 almonds (10 g)', cal:'58 kcal', tag:'Vitamin E + Magnesium + Slow Fat',
+    what:'8 whole almonds soaked overnight in water, skin on. Soaking neutralizes phytic acid — a compound that blocks mineral absorption. Soaked almonds release significantly more magnesium and vitamin E than raw dry almonds.',
+    provides:'58 kcal · 2.1g protein · 5g fat (monounsaturated) · 1.2g fiber · Vitamin E (3.4 mg) · Magnesium',
+    where:'Meal 1 — Early Morning (06:00) · Eaten with soaked date, fig, and walnuts',
+    goodfor:'Vitamin E is the primary antioxidant protecting muscle cells from exercise-induced damage — reduces next-day soreness (DOMS) · Soaking unlocks more magnesium which supports 300+ enzymatic reactions including protein synthesis · Monounsaturated fat on empty stomach prevents morning cortisol spike (cortisol promotes fat storage) · Slow fat release keeps energy stable until your pre-workout meal'
+  },
+  walnuts: {
+    emoji:'🟤', name:'Soaked Walnuts', qty:'2 halves (7 g)', cal:'46 kcal', tag:'Omega-3 ALA + Anti-Inflammatory',
+    what:'2 walnut halves soaked overnight in water. The only nut with meaningful plant-based omega-3 (ALA). Soaking reduces bitterness and improves nutrient availability.',
+    provides:'46 kcal · 1g protein · 4.5g fat (2.6g omega-3 ALA) · 0.6g fiber · Manganese · Copper · Polyphenols',
+    where:'Meal 1 — Early Morning (06:00) · Consumed first in the morning for maximum anti-inflammatory effect',
+    goodfor:'Omega-3 ALA is most effective at reducing cortisol when consumed on empty stomach — directly fights the morning fat-storage hormone · Polyphenols protect muscle mitochondria from oxidative damage caused by exercise · Reduces visceral abdominal fat specifically — your primary fat loss target · Supports brain function and mood — important for training motivation · Soaking improves ALA bioavailability significantly vs dry walnuts'
+  },
+  banana: {
+    emoji:'🍌', name:'Banana (Ripe)', qty:'1 medium banana (120 g)', cal:'105 kcal', tag:'Pre-Workout Glucose + Potassium',
+    what:'1 ripe medium banana. The riper it is, the more simple sugars are available for fast energy delivery. This is your primary fuel source before your walk to the gym.',
+    provides:'105 kcal · 1.3g protein · 27g carbs (fast + medium GI) · 3g fiber · Potassium (422 mg) · Vitamin B6',
+    where:'Meal 2 — Pre-Workout (06:40) · Eaten 40–50 minutes before your 5 km walk + gym session',
+    goodfor:'Primary pre-workout glucose fuel — available to muscles within 20–30 minutes · Potassium is essential for muscle contraction during your 5 km walk to gym — prevents cramping · B6 supports serotonin for training motivation · Fiber slows glucose release enough to prevent mid-workout energy crash · Completely easy on the stomach — no discomfort during exercise · At your training volume (10 km walk + gym), you NEED this carb load before training'
+  },
+  egg_preworkout: {
+    emoji:'🥚', name:'Whole Egg, Boiled', qty:'1 egg', cal:'72 kcal', tag:'Pre-Workout Anti-Catabolism',
+    what:'1 large chicken egg, hard boiled. Eaten before your walk to the gym to provide a slow protein source that prevents muscle breakdown during the fasted walk and gym session.',
+    provides:'72 kcal · 6.3g protein · 0.4g carbs · 5g fat · Choline · Leucine · Vitamin D · B12 · Selenium',
+    where:'Meal 2 — Pre-Workout (06:40) · Eaten alongside banana and chia seeds before the gym',
+    goodfor:'Prevents muscle catabolism during your 5 km walk to gym — the fat + protein slow digestion keeps amino acids available · Choline supports muscle nerve signal transmission during training · Leucine primes the mTOR anabolic pathway before you even lift · Fat in yolk slows glucose release from banana = sustained energy profile · Complete amino acid profile ensures no muscle breakdown during the fasted morning training state'
+  },
+  chia_seeds: {
+    emoji:'⚫', name:'Chia Seeds (in water)', qty:'5 g in water', cal:'25 kcal', tag:'Hydration Gel + Fiber + Omega-3',
+    what:'5 grams of chia seeds mixed into a glass of water and consumed — they form a gel that moves with you. Mix 5–10 minutes before drinking. This gel form is the most effective way to consume chia for endurance and hydration.',
+    provides:'25 kcal · 1g protein · 2g carbs · 1.5g fat (omega-3) · 2g fiber · Calcium · Phosphorus',
+    where:'Meal 2 — Pre-Workout (06:40) · Consumed mixed in water alongside banana and boiled egg',
+    goodfor:'Gel forms in gut and physically slows glucose absorption from banana — extends energy across the entire workout duration · The hydration gel holds water in your gut keeping you hydrated longer during the 5 km walk to gym · 2g fiber per 5g seeds — high fiber density helps stabilize blood sugar during training · Omega-3 anti-inflammatory support during exercise reduces intra-workout joint inflammation · Calcium supports muscle contraction signaling'
+  },
+  whey_gym: {
+    emoji:'💪', name:'Whey Protein — The Whole Truth (at Gym)', qty:'1 scoop — drink AT THE GYM', cal:'120 kcal · 26g protein', tag:'⭐ IMMEDIATE POST-WORKOUT AT GYM',
+    what:'The Whole Truth Whey Concentrate — 1 scoop mixed in water. You drink this IMMEDIATELY after your last gym set, BEFORE starting the 5 km walk home. This solves the post-workout timing problem: whey is fast enough to begin recovery during the walk itself. The full breakfast at home comes 40–50 minutes later, which is still within the optimal recovery window.',
+    provides:'120 kcal · 26g protein · 3g carbs · 1.5g fat · All 9 essential amino acids · High leucine · BCAAs',
+    where:'Meal 3 — Immediate Post-Workout (at gym, before walking home) · Separate from the breakfast eaten at home',
+    goodfor:'Fastest amino acid delivery of any food — reaches muscles in under 30 minutes · You CANNOT eat a full breakfast immediately after gym because you have a 5 km walk home — whey bridges this gap perfectly · Amino acids are circulating in your blood BY THE TIME you reach home · Leucine activates mTOR muscle growth switch immediately · 26g protein in liquid form requires zero digestion effort — ideal post-exhaustion · By the time you sit down for breakfast at home, whey has already initiated muscle protein synthesis for 40+ minutes'
+  },
+  egg_breakfast: {
+    emoji:'🥚', name:'Whole Eggs, Boiled', qty:'2 eggs', cal:'144 kcal', tag:'Complete Protein + Choline + Fat',
+    what:'2 large chicken eggs, hard boiled, eaten at home after returning from the gym (post the 5 km walk). Combined with whey and 2 egg whites, this creates a 3-layer protein absorption profile: fast (whey), medium (whites), slow (whole eggs).',
+    provides:'144 kcal · 12.6g protein · 1g carbs · 10g fat · Choline (294 mg) · Leucine · Vitamin D · B12 · Selenium',
+    where:'Meal 4 — Post-Workout Breakfast at home (after 5 km walk) · Eaten with rice, dal, cucumber, flaxseed',
+    goodfor:'Provides sustained protein release for 4–6 hours AFTER the fast whey hit from the gym · Choline (294 mg across 2 eggs) is critical for muscle nerve signaling and anabolic hormone signaling · Yolk fat slows digestion so amino acids trickle into blood throughout the morning · Combined with whey + 2 whites at breakfast, total breakfast protein = 61.4g — the largest single protein feeding of the day · Vitamin D from yolk supports testosterone production — your primary anabolic hormone for body recomposition'
+  },
+  egg_white_breakfast: {
+    emoji:'⬜', name:'Egg Whites, Boiled', qty:'2 egg whites', cal:'34 kcal', tag:'Pure Protein — Zero Fat',
+    what:'2 separated egg whites, boiled or poached — no yolk. Almost pure protein. At breakfast, alongside 2 whole eggs and whey, the whites fill the medium-speed protein absorption slot between the fast whey and the slower whole eggs.',
+    provides:'34 kcal · 7.2g protein · 0g fat · 0g carbs · Riboflavin (B2) · Potassium',
+    where:'Meal 4 — Post-Workout Breakfast at home · Eaten together with 2 whole eggs',
+    goodfor:'Adds 7.2g pure protein with only 34 calories — maximum protein per calorie ratio · Creates staggered absorption: whey (30 min) → whites (60–90 min) → whole eggs (2–4 hrs) → keeps amino acids elevated for hours · Riboflavin supports cellular energy metabolism during the recovery phase · No fat means they digest faster than whole eggs — plugging the gap between whey and whole eggs · 2 whites + 2 whole eggs + 1 scoop whey = 45.8g protein at this single eating event'
+  },
+  white_rice_200: {
+    emoji:'🍚', name:'White Rice, Cooked', qty:'200 g cooked', cal:'260 kcal', tag:'Post-Workout Glycogen Fuel',
+    what:'200 grams of cooked white rice — basmati or long grain. White rice is intentionally chosen over brown rice for post-workout because its lower fiber content means faster starch digestion and faster glycogen replenishment.',
+    provides:'260 kcal · 5g protein · 57g carbs (medium GI) · 0.5g fat · 0.8g fiber',
+    where:'Meal 4 — Post-Workout Breakfast at home (200g) · Also Meal 7 — Dinner (200g)',
+    goodfor:'Rapidly replenishes muscle glycogen depleted during your gym session and 5 km walk · Faster digestion than brown rice means nutrients reach muscles sooner in the recovery window · 57g carbohydrates in 200g cooked rice — this is fuel, not fat · White rice is the most neutral-tasting staple — no digestive discomfort · Rice at dinner is NOT a problem: insulin sensitivity is elevated after your evening activity · Your 10 km daily walking + gym requires 281g carbs/day — rice is the backbone of hitting this target'
+  },
+  dal_100: {
+    emoji:'🫘', name:'Dal (Cooked Lentils)', qty:'100 g cooked', cal:'116 kcal', tag:'Plant Protein + Fiber',
+    what:'100 grams of cooked lentils — toor dal, moong dal, or masoor dal. A smaller serving at breakfast compared to lunch/dinner, because the primary focus at breakfast is fast-digesting nutrients for recovery.',
+    provides:'116 kcal · 9g protein · 20g carbs · 0.5g fat · 4g fiber · Iron · Folate',
+    where:'Meal 4 — Post-Workout Breakfast at home · Smaller 100g serving vs 200g at lunch and dinner',
+    goodfor:'Adds 9g plant protein that complements the animal protein (whey + eggs) for a complete amino acid spectrum · 4g fiber at breakfast is important for glycemic control — prevents post-meal blood sugar spike · Iron supports hemoglobin replenishment after the aerobic output of your morning walk and gym · Folate supports cell division and DNA repair — critical during muscle growth · Comfortable, familiar Indian food that makes the breakfast meal satisfying and sustainable'
+  },
+  cucumber_before: {
+    emoji:'🥒', name:'Cucumber, Fresh Raw (eaten before meal)', qty:'1 cucumber (100 g)', cal:'16 kcal', tag:'Pre-Meal Hydration + Silica',
+    what:'1 whole fresh cucumber, raw, eaten BEFORE the post-workout breakfast meal. Eating it before the main meal (not during) serves a specific purpose: it begins hydrating the gut and providing silica before the protein and carb load.',
+    provides:'16 kcal · 0.6g protein · 4g carbs · 1g fiber · Silica · Vitamin K · Potassium · 95% water content',
+    where:'Meal 4 — Post-Workout Breakfast · Eaten BEFORE rice, dal, and eggs as a pre-meal starter',
+    goodfor:'Silica is the critical mineral for collagen synthesis in joints, tendons, and connective tissue — essential at 97.4 kg bodyweight doing compound lifts · Eating it before the meal creates a water/fiber layer in the gut that slows subsequent glucose absorption from rice · 95% water content contributes to your 4.9L daily water target · Vitamin K for bone density · 16 calories essentially free — fills stomach volume before the calorie-dense protein meal, naturally reducing overeating · Pre-meal hydration prepares gastric mucosa for food'
+  },
+  flaxseed: {
+    emoji:'🌾', name:'Flaxseed Powder (Ground)', qty:'5 g', cal:'27 kcal', tag:'Plant Omega-3 + Anti-Inflammation',
+    what:'5 grams of ground flaxseeds (must be ground — whole flaxseeds pass undigested). Brown or golden, ground fresh or bought pre-ground. Mix into dal or sprinkle on food.',
+    provides:'27 kcal · 1g protein · 2g fat (1.6g ALA omega-3) · 1.5g fiber · Lignans · Phosphorus',
+    where:'Meal 4 — Post-Workout Breakfast (5g) · Meal 7 — Dinner (5g) · 10g total daily',
+    goodfor:'ALA omega-3 reduces systemic inflammation — inflammation literally blocks fat oxidation, so reducing it accelerates fat loss · Lignans support healthy hormone metabolism (estrogen/testosterone balance) — important for body recomposition · Two doses daily (breakfast + dinner) creates sustained anti-inflammatory coverage across 24 hours · Dinner dose works during peak growth hormone sleep phase — reduces overnight muscle inflammation · At 10g daily, provides meaningful ALA without excessive calories'
+  },
+  chicken_cooked: {
+    emoji:'🍗', name:'Chicken Breast (150g raw, cooked)', qty:'150 g raw → cooked with onion + tomato', cal:'248 kcal', tag:'Primary Protein Source — Lean Muscle',
+    what:'150 grams of raw chicken breast, cooked with onion and tomato (your cooking method). Cooking reduces weight by approximately 20–25%, so 150g raw becomes approximately 115–120g cooked. Onion and tomato are the cooking ingredients — no oil or minimal oil.',
+    provides:'248 kcal · 40g protein · 0g carbs · 8g fat · B3 (Niacin) · Selenium · Phosphorus · Complete amino acids',
+    where:'Meal 5 — Lunch (first 150g raw portion) · Meal 7 — Dinner (second 150g raw portion) · Total 300g raw chicken daily',
+    goodfor:'40g protein per 150g raw portion — highest single-source protein of any meal · Slow-digesting protein sustains elevated blood amino acids for 4–6 hours · At 300g raw total per day (exactly your specified maximum), you hit your protein target without overcooking kidneys · Niacin (B3) is non-negotiable for fat metabolism — you literally cannot oxidize fat efficiently without enough niacin · Cooking with onion + tomato adds quercetin (anti-inflammatory), lycopene (anti-cancer, anti-visceral fat), and Vitamin C (collagen synthesis) for zero extra calories · Split exactly 150g + 150g raw between lunch and dinner'
+  },
+  white_rice_250: {
+    emoji:'🍚', name:'White Rice, Cooked', qty:'250 g cooked', cal:'325 kcal', tag:'Largest Carb Meal — Glycogen Store',
+    what:'250 grams of cooked white rice at lunch — the largest single rice serving of the day. This is your glycogen refueling meal. After your morning activity (10 km walk + gym), your muscles need maximum glycogen restoration at midday.',
+    provides:'325 kcal · 6.5g protein · 71g carbs · 0.6g fat · 1g fiber',
+    where:'Meal 5 — Lunch (13:00) · The largest rice serving of the day',
+    goodfor:'71g carbohydrates is the largest single carb hit of the day — restoring the maximum glycogen after your massive morning energy output · By 1 PM you have already done 5 km walk (to gym) + 1 hour gym + 5 km walk home = roughly 15,000 steps + resistance training · This much rice at lunch is physiologically justified and necessary · Your body is in a highly insulin-sensitive state after all this activity — carbs go straight to muscles, not fat · Do not reduce this serving — it is what keeps your energy stable through the afternoon'
+  },
+  dal_200: {
+    emoji:'🫘', name:'Dal (Cooked Lentils)', qty:'200 g cooked', cal:'232 kcal', tag:'Plant Protein + 8g Fiber',
+    what:'200 grams of cooked lentils — any variety (toor, moong, masoor, chana). This is the standard lunch and dinner serving. The largest dal serving in the day for maximum fiber and plant protein.',
+    provides:'232 kcal · 18g protein · 40g carbs · 1g fat · 8g fiber · Iron · Folate · Zinc',
+    where:'Meal 5 — Lunch (200g) · Meal 7 — Dinner (200g) · 400g total cooked dal at main meals',
+    goodfor:'8g fiber per 200g — the single highest fiber item per serving in your plan · This fiber is critical for preventing the blood sugar rollercoaster that causes fat storage · Iron replenishes hemoglobin after your daily aerobic output · Zinc from lentils combined with pumpkin seeds at lunch gives you a significant zinc hit for testosterone support · Plant protein (18g) complements chicken protein for a complete amino acid spectrum · Dal + chicken at the same meal = one of the most nutritionally complete combinations in Indian cuisine'
+  },
+  carrot: {
+    emoji:'🥕', name:'Carrot, Raw', qty:'1 raw carrot (80 g)', cal:'32 kcal', tag:'Beta-Carotene + Vitamin A',
+    what:'1 medium fresh carrot, raw, unpeeled or peeled. Eaten raw — not cooked — to preserve the maximum beta-carotene content. Beta-carotene is fat-soluble so it absorbs best alongside the fat in your chicken and dal.',
+    provides:'32 kcal · 0.8g protein · 7g carbs · 2.2g fiber · Beta-carotene (4,130 mcg → Vitamin A) · Biotin · Vitamin K',
+    where:'Meal 5 — Lunch (1 carrot) · Meal 6 — Evening Snack (1 carrot) · 2 carrots total daily',
+    goodfor:'Beta-carotene converts to Vitamin A — essential for immune function (training hard suppresses immunity), skin regeneration, and eye health · Biotin supports fat metabolism — Biotin deficiency slows fat burning · Eaten alongside fat (from chicken/seeds) dramatically improves beta-carotene absorption · 2.2g fiber per carrot contributes to your 36g daily fiber target · High crunch, high volume, low calorie — provides significant chewing satisfaction for only 32 kcal · Orange pigment antioxidants specifically protect muscle mitochondria from exercise-induced oxidative damage'
+  },
+  cucumber_lunch: {
+    emoji:'🥒', name:'Cucumber, Raw', qty:'1 cucumber (100 g)', cal:'16 kcal', tag:'Silica + Volume + Hydration',
+    what:'1 fresh raw cucumber, eaten with lunch as a side. Same vegetable as morning but this time eaten during the meal (not before), providing volume and micronutrients alongside your main food.',
+    provides:'16 kcal · 0.6g protein · 4g carbs · 1g fiber · Silica · Vitamin K · Potassium · 95% water',
+    where:'Meal 5 — Lunch (13:00) · Eaten as a raw side with chicken, rice, and dal',
+    goodfor:'Silica directly supports collagen synthesis in joints and connective tissue — critical when lifting weights at 97.4 kg · Provides significant volume and fullness for only 16 calories · Vitamin K for bone mineral density · Hydration: contributes to your 4.9L daily water target through food water content · Two cucumbers daily (breakfast + lunch) provides consistent silica delivery for connective tissue repair throughout the day'
+  },
+  pumpkin_seeds: {
+    emoji:'🟢', name:'Pumpkin Seeds (Raw)', qty:'5 g', cal:'28 kcal', tag:'Zinc + Testosterone + Magnesium',
+    what:'5 grams of raw, unroasted pumpkin seeds (pepitas). Small amount but one of the most mineral-dense foods per gram.',
+    provides:'28 kcal · 1.5g protein · 2.5g fat · Zinc (0.7 mg) · Magnesium (19 mg) · Iron · Antioxidants',
+    where:'Meal 5 — Lunch (5g) · Eaten with or after the main lunch meal',
+    goodfor:'Zinc is the most critical mineral for testosterone production — low zinc = low testosterone = slow body recomposition · 5g gives a meaningful zinc contribution at minimal calorie cost · Magnesium supports protein synthesis, sleep quality, and nerve function · Acts as a natural ZMA supplement when combined with the zinc from lentils · Anti-inflammatory phytosterols reduce post-lunch inflammation · Small exact 5g dose — enough for mineral benefit without excessive fat calories adding up'
+  },
+  boiled_beans: {
+    emoji:'🫘', name:'Boiled Beans', qty:'100 g', cal:'127 kcal', tag:'Evening Fiber + Plant Protein',
+    what:'100 grams of plain boiled beans — rajma (kidney beans), chickpeas (chana), black-eyed peas (lobia), or black beans. Boiled in plain water only. No oil, no spices. This is the exact specified quantity of 100g.',
+    provides:'127 kcal · 9g protein · 22g carbs · 0.5g fat · 7g fiber · Iron · Potassium · Folate',
+    where:'Meal 6 — Evening Snack (17:30) · Consumed with 1 raw carrot and 5g sunflower seeds',
+    goodfor:'7g fiber is the single highest fiber serving per meal in your plan — critical for healthy gut bacteria · Prevents the 5–6 PM blood sugar dip that triggers intense dinner cravings and overeating · 9g protein from plant source diversifies amino acid intake across the day · Potassium supports muscle recovery in the afternoon window · Resistant starch in beans specifically feeds beneficial gut bacteria, reducing systemic inflammation · Beans provide sustained energy that lasts until dinner without a calorie spike'
+  },
+  sunflower_seeds: {
+    emoji:'🌻', name:'Sunflower Seeds (Raw)', qty:'5 g', cal:'29 kcal', tag:'Vitamin E + Selenium + Thyroid',
+    what:'5 grams of raw, hulled sunflower seeds. Particularly rich in Vitamin E and selenium — two antioxidant nutrients that are critical for thyroid and metabolic health.',
+    provides:'29 kcal · 1g protein · 2.5g fat · 0.5g fiber · Vitamin E (1.4 mg) · Selenium (4.4 mcg) · Thiamine (B1)',
+    where:'Meal 6 — Evening Snack (17:30) · Eaten with boiled beans and raw carrot',
+    goodfor:'Vitamin E second hit of the day — combined with almonds at morning, you maintain elevated vitamin E status for constant muscle recovery support · Selenium is essential for converting thyroid hormone T4 → T3 (the active form). Low selenium = sluggish thyroid = slow metabolism = poor fat loss · Thiamine (B1) supports energy metabolism in the afternoon/evening recovery window · At just 5g, provides meaningful micronutrient benefit at only 29 calories — perfect snack addition · Selenium deficiency is extremely common in India — sunflower seeds are one of the best dietary sources'
+  },
+  white_rice_200d: {
+    emoji:'🍚', name:'White Rice, Cooked', qty:'200 g cooked', cal:'260 kcal', tag:'Dinner Carbs — Recovery Fuel',
+    what:'200 grams of cooked white rice at dinner. Slightly less than lunch (250g) since the post-gym glycogen depletion has been partially restored by the breakfast and lunch carbs.',
+    provides:'260 kcal · 5g protein · 57g carbs · 0.5g fat · 0.8g fiber',
+    where:'Meal 7 — Dinner (20:00) · Final carb meal of the day',
+    goodfor:'Rice at night is NOT a problem — this is a common myth · Your insulin sensitivity is actually elevated in the evening after a full day of activity · Carbohydrates at dinner help increase serotonin → melatonin conversion, supporting deep sleep · Deep sleep is when 80% of your growth hormone is released — the primary anabolic and fat-burning hormone · 57g carbs at dinner sustains overnight anabolic processes and ensures you wake up Monday fueled · Eating before 8 PM leaves a 10–12 hour overnight fast which optimizes morning fat oxidation'
+  },
+  dal_200d: {
+    emoji:'🫘', name:'Dal (Cooked Lentils)', qty:'200 g cooked', cal:'232 kcal', tag:'Dinner Plant Protein + Fiber',
+    what:'200 grams of cooked lentils at dinner — same as lunch. Together with dinner chicken (150g raw), this creates a combined 58g protein at the final meal, ensuring you complete your 167g daily protein target.',
+    provides:'232 kcal · 18g protein · 40g carbs · 1g fat · 8g fiber · Iron · Folate',
+    where:'Meal 7 — Dinner (20:00) · Paired with 150g raw chicken and 200g rice',
+    goodfor:'8g fiber at dinner is extremely important — overnight gut fermentation of lentil fiber produces short-chain fatty acids (SCFAs) that reduce inflammation while you sleep · Iron replenishment at dinner is ideal since iron absorbs best during overnight fasting state · Completing 167g protein target: breakfast (35.4g) + lunch (67.4g) + evening (10.8g) + dinner (64g) = 177g across the day · Folate supports overnight DNA repair and cell division during the sleep growth phase · Warm dal at dinner is psychologically satisfying and supports good sleep'
+  },
+  // Sunday-specific items
+  egg_sun: {
+    emoji:'🥚', name:'Whole Eggs, Boiled', qty:'3 eggs', cal:'216 kcal', tag:'Sunday Protein — No Whey Rest Day',
+    what:'3 whole eggs on Sunday replacing the weekday whey protein. On rest day, no post-workout whey is needed. 3 eggs provide comprehensive nutrition with the slower absorption profile appropriate for a non-training day.',
+    provides:'216 kcal · 18.9g protein · 15g fat · Choline (441 mg) · Vitamin D · B12 · All 9 essential amino acids',
+    where:'Meal 2 — Sunday Breakfast (09:00) · No whey on Sunday (rest day, no workout)',
+    goodfor:'Complete protein to maintain muscle protein synthesis on rest day · On rest days, slower protein absorption (whole eggs) is actually preferred over fast whey · 3 eggs on Sunday vs 2 whole + 2 whites on weekdays — same protein count, all from whole food · Choline (441 mg) supports muscle nerve health during recovery day · Sunday is a good day to have sun exposure alongside dietary Vitamin D from yolk · Preparing a leisurely boiled egg breakfast on Sunday reinforces the routine and makes rest day enjoyable'
+  },
+  rice_sun: {
+    emoji:'🍚', name:'White Rice, Cooked (Reduced)', qty:'150 g cooked', cal:'195 kcal', tag:'Rest Day Carbs — Reduced',
+    what:'150 grams cooked rice on Sunday instead of the weekday 200–250g. Slightly reduced because there is no training session to replenish glycogen for. Rest day carb demand is lower.',
+    provides:'195 kcal · 3.7g protein · 43g carbs · Minimal fat',
+    where:'Sunday meals — slightly reduced from weekday portions',
+    goodfor:'Maintains blood sugar stability throughout the rest day · Reduced from weekday amounts because no glycogen was depleted in training · Still provides enough carbs to keep liver glycogen topped off so you wake Monday fully fueled · Avoids the psychological trap of eliminating carbs on rest days (which causes rebound hunger and bingeing on Monday)'
+  }
+};
+
+// Meal plan — Mon–Sat (7 meals, training days)
+const MEALS_TRAINING = [
+  {
+    id:'m1', time:'06:00 AM', label:'EARLY MORNING — WAKE', name:'MORNING PRIMER', star:false,
+    kcal:152, P:'3.6g', C:'15g', F:'9.5g',
+    purpose:'Breaks overnight fast with zero digestive stress. Warm salted water re-hydrates and replaces electrolytes. Soaked dates + fig provide gentle natural glucose for brain activation. Soaked walnuts deliver omega-3 first thing to suppress morning cortisol — the fat-storing stress hormone. Soaked almonds provide vitamin E for muscle cell protection.',
+    items:['warm_salt_water','dates','anjeer','almonds','walnuts']
+  },
+  {
+    id:'m2', time:'06:40 AM', label:'PRE-WORKOUT', name:'PRE-WORKOUT FUEL', star:false,
+    kcal:202, P:'8.6g', C:'29g', F:'6.9g',
+    purpose:'Banana glucose is available to muscles within 20 minutes — perfectly timed for your walk to the gym and training session. The boiled egg prevents muscle breakdown during the fasted training state. Chia seeds in water form a hydration gel that extends energy release across the full workout.',
+    items:['banana','egg_preworkout','chia_seeds']
+  },
+  {
+    id:'m3', time:'At gym — immediately post last set', label:'IMMEDIATE POST-WORKOUT · AT GYM', name:'WHEY AT GYM', star:true, badge:'⭐ DRINK BEFORE WALKING HOME',
+    kcal:120, P:'26g', C:'3g', F:'1.5g',
+    purpose:'You walk 5 km back home after the gym — so eating a full meal immediately is not possible. SOLUTION: Drink whey protein in water at the gym immediately after your last set, then walk home. Whey amino acids begin reaching muscles WITHIN 30 MINUTES — they are already circulating by the time you walk through your front door. The full breakfast at home 40–50 minutes later completes the recovery window. This is physiologically ideal: whey first (fast amino acids) → breakfast later (glycogen + sustained protein).',
+    items:['whey_gym']
+  },
+  {
+    id:'m4', time:'~08:30 AM', label:'POST-WORKOUT BREAKFAST — AT HOME', name:'RECOVERY BREAKFAST', star:false,
+    kcal:597, P:'35.4g', C:'83g', F:'13g',
+    purpose:'Eaten at home after the 5 km walk back. Whey already handled the amino acid spike — now this meal restores glycogen (rice), adds sustained protein (2 eggs + 2 whites), and provides omega-3 (flaxseed). Cucumber is eaten BEFORE this meal to pre-hydrate the gut. This + whey = 61.4g total post-workout protein across the recovery window.',
+    items:['cucumber_before','egg_breakfast','egg_white_breakfast','white_rice_200','dal_100','flaxseed']
+  },
+  {
+    id:'m5', time:'01:00 PM', label:'LUNCH', name:'POWER LUNCH', star:false,
+    kcal:881, P:'67.4g', C:'123g', F:'12.1g',
+    purpose:'Largest calorie and protein meal of the day. 150g raw chicken (cooked with onion + tomato) delivers 40g protein that sustains muscle protein synthesis for 4–6 hours. 250g rice provides the biggest single glycogen reload after your massive morning energy output. Dal provides 8g fiber for glycemic control and gut health.',
+    items:['chicken_cooked','white_rice_250','dal_200','carrot','cucumber_lunch','pumpkin_seeds']
+  },
+  {
+    id:'m6', time:'05:30 PM', label:'EVENING SNACK', name:'EVENING FUEL', star:false,
+    kcal:188, P:'10.8g', C:'30g', F:'3g',
+    purpose:'Prevents the 5–6 PM blood sugar crash that drives intense dinner cravings and overeating. 100g boiled beans provide clean carb + protein keeping insulin stable. 7g fiber from beans sustains satiety through to dinner without adding excess calories.',
+    items:['boiled_beans','carrot','sunflower_seeds']
+  },
+  {
+    id:'m7', time:'08:00 PM', label:'DINNER', name:'RECOVERY DINNER', star:false,
+    kcal:767, P:'64g', C:'98g', F:'11.5g',
+    purpose:'Final protein loading of the day completing your 167g protein target. 150g raw chicken (same preparation as lunch) provides 40g slow protein for overnight muscle repair. Flaxseed omega-3 reduces overnight inflammation during the peak growth hormone sleep phase. Finish by 8 PM to allow 10–12 hour overnight fast for optimal morning fat oxidation.',
+    items:['chicken_cooked','white_rice_200d','dal_200d','flaxseed']
+  }
+];
+
+// Sunday meals (rest day — no whey, no workout)
+const MEALS_SUNDAY = [
+  {
+    id:'s1', time:'07:00 AM', label:'WAKE-UP (LATER)', name:'MORNING RITUAL', star:false,
+    kcal:152, P:'3.6g', C:'15g', F:'9.5g',
+    purpose:'Same morning ritual as weekdays — routine consistency maintains circadian rhythm even on rest day. No rush. Sip warm salted water slowly. Eat soaked nuts and dried fruit mindfully. This is the one morning you can sit and enjoy.',
+    items:['warm_salt_water','dates','anjeer','almonds','walnuts']
+  },
+  {
+    id:'s2', time:'09:00 AM', label:'SUNDAY BREAKFAST — NO WHEY', name:'REST DAY BREAKFAST', star:false, badge:'NO WHEY — REST DAY',
+    kcal:447, P:'31g', C:'49g', F:'17g',
+    purpose:'No workout today — no whey needed. 3 whole eggs replace whey as the primary protein source. Dal at breakfast is a Sunday tradition — high fiber, gentle, nourishing. Eat slowly and without rushing. This meal sets a calm, recovery-focused tone for the day.',
+    items:['egg_sun','dal_100','rice_sun','flaxseed']
+  },
+  {
+    id:'s3', time:'01:00 PM', label:'SUNDAY LUNCH', name:'RECOVERY LUNCH', star:false,
+    kcal:820, P:'67g', C:'103g', F:'11g',
+    purpose:'Slightly lighter than weekday lunch — 150g raw chicken still, but 200g rice instead of 250g since glycogen demand is lower on a rest day. Use this meal prep time to cook Monday\'s chicken and rice in bulk for the week ahead.',
+    items:['chicken_cooked','white_rice_200','dal_200','carrot','cucumber_lunch','pumpkin_seeds']
+  },
+  {
+    id:'s4', time:'05:30 PM', label:'EVENING SNACK', name:'LIGHT SNACK', star:false,
+    kcal:188, P:'10.8g', C:'30g', F:'3g',
+    purpose:'Same as weekdays. Maintains metabolic rhythm and prevents evening hunger. A good time to take a light easy 2–3 km stroll and prep mentally for the training week ahead.',
+    items:['boiled_beans','carrot','sunflower_seeds']
+  },
+  {
+    id:'s5', time:'07:30 PM', label:'EARLY DINNER', name:'LIGHT RECOVERY DINNER', star:false,
+    kcal:625, P:'54g', C:'82g', F:'10g',
+    purpose:'Earlier and lighter dinner on Sunday. 150g raw chicken and 200g rice — same as weekday dinner. Earlier finish (7:30 PM vs 8 PM) gives a slightly longer overnight fast before Monday\'s heavy training day. Wake Monday morning with empty stomach, full glycogen, and full motivation.',
+    items:['chicken_cooked','white_rice_200d','dal_200d','flaxseed']
+  }
+];
+function buildFoodItem(key, mealName) {
+  const d = FOOD_DB[key];
+  if(!d) return '';
+  const id = 'fi_' + Math.random().toString(36).substr(2,8);
+  return `
+  <div class="diet-food-item" id="${id}" onclick="toggleDietFood('${id}')">
+    <div class="diet-food-row">
+      <span class="diet-food-emoji">${d.emoji}</span>
+      <div class="diet-food-name-wrap">
+        <span class="diet-food-name">${d.name}</span>
+        <span class="diet-food-tag">${d.tag}</span>
+      </div>
+      <span class="diet-food-qty">${d.qty}</span>
+      <span class="diet-food-cal">${d.cal}</span>
+      <div class="diet-expand-icon">+</div>
+    </div>
+    <div class="diet-food-detail">
+      <div class="diet-detail-grid">
+        <div class="diet-detail-box what">
+          <div class="diet-detail-lbl">🔍 WHAT IT IS</div>
+          <div class="diet-detail-txt">${d.what}</div>
+        </div>
+        <div class="diet-detail-box provides">
+          <div class="diet-detail-lbl">⚡ WHAT IT PROVIDES</div>
+          <div class="diet-detail-txt">${d.provides}</div>
+        </div>
+        <div class="diet-detail-box where">
+          <div class="diet-detail-lbl">📍 WHERE IN YOUR PLAN</div>
+          <div class="diet-detail-txt">${d.where}</div>
+        </div>
+        <div class="diet-detail-box goodfor">
+          <div class="diet-detail-lbl">✅ WHY IT'S GOOD FOR YOU</div>
+          <div class="diet-detail-txt">${d.goodfor}</div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function buildMeal(m) {
+  const isSpecial = m.star;
+  const badgeHtml = m.badge ? `<span class="diet-meal-badge ${m.id==='m3'?'':'whey-badge'}">${m.badge}</span>` : '';
+  const foodItems = m.items.map(k => buildFoodItem(k)).join('');
+  return `
+  <div class="diet-meal ${isSpecial?'star-meal':''}">
+    <div class="diet-meal-header" style="${isSpecial?'background:rgba(212,175,55,0.06);':''}">
+      <div class="diet-meal-left">
+        <div class="diet-meal-time-row">
+          <span class="diet-meal-time">${m.time} · ${m.label}</span>
+          ${badgeHtml}
+        </div>
+        <div class="diet-meal-name" style="${isSpecial?'color:var(--gold)':''}">${m.name}</div>
+      </div>
+      <div class="diet-meal-macros">
+        <div class="diet-m-macro"><div class="diet-m-macro-val">${m.kcal}</div><div class="diet-m-macro-lbl">kcal</div></div>
+        <div class="diet-m-macro"><div class="diet-m-macro-val" style="color:var(--cyan)">${m.P}</div><div class="diet-m-macro-lbl">protein</div></div>
+        <div class="diet-m-macro"><div class="diet-m-macro-val">${m.C}</div><div class="diet-m-macro-lbl">carbs</div></div>
+        <div class="diet-m-macro"><div class="diet-m-macro-val" style="color:rgba(255,160,40,0.9)">${m.F}</div><div class="diet-m-macro-lbl">fat</div></div>
+      </div>
+    </div>
+    <div class="diet-meal-purpose">⚡ ${m.purpose}</div>
+    <div class="diet-food-list">${foodItems}</div>
+  </div>`;
+}
+
+function buildDietDay(dayKey) {
+  const isSunday = dayKey === 'sun';
+  const meals = isSunday ? MEALS_SUNDAY : MEALS_TRAINING;
+  const dayLabels = {mon:'MONDAY',tue:'TUESDAY',wed:'WEDNESDAY',thu:'THURSDAY',fri:'FRIDAY',sat:'SATURDAY',sun:'SUNDAY'};
+
+  let html = `<div class="diet-day-content${dayKey==='mon'?' active':''}" id="diet-day-${dayKey}">`;
+
+  if(isSunday) {
+    html += `
+    <div class="sunday-rest-banner">
+      <h2>🌿 SUNDAY — REST & RECOVER</h2>
+      <p>No workout today. No whey protein. Reduced calories (~2250 kcal) to match lower energy expenditure. This is your body's most important healing day. Eat comfortably, hydrate well, and prepare mentally for the week ahead.</p>
+      <div style="display:flex;gap:16px;justify-content:center;margin-top:20px;flex-wrap:wrap;">
+        <div style="background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:12px 20px;font-family:var(--font-mono);font-size:.65rem;letter-spacing:.15em;color:var(--cyan);">~2250 KCAL</div>
+        <div style="background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:12px 20px;font-family:var(--font-mono);font-size:.65rem;letter-spacing:.15em;color:var(--cyan);">~167g PROTEIN</div>
+        <div style="background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:12px 20px;font-family:var(--font-mono);font-size:.65rem;letter-spacing:.15em;color:var(--cyan);">4L WATER</div>
+        <div style="background:rgba(255,59,59,0.08);border:1px solid rgba(255,59,59,0.2);border-radius:8px;padding:12px 20px;font-family:var(--font-mono);font-size:.65rem;letter-spacing:.15em;color:var(--red);">NO WHEY TODAY</div>
+      </div>
+    </div>`;
+  } else {
+    html += `
+    <div style="padding:18px 24px;background:linear-gradient(135deg,rgba(212,175,55,0.06),transparent);border:1px solid var(--border);border-radius:12px;margin-bottom:28px;font-size:.82rem;color:var(--muted);line-height:1.6;">
+      <strong style="color:var(--gold);font-family:var(--font-display);letter-spacing:.08em;">${dayLabels[dayKey]} — TRAINING DAY DIET:</strong>
+      This is your Mon–Sat standard diet. Same meals, same quantities every training day. Consistency is the most powerful performance tool. Click any food item below to reveal exactly what it is, what it provides, where it sits in your plan, and what it's good for.
+    </div>`;
+  }
+
+  html += `<div class="diet-meals">${meals.map(m => buildMeal(m)).join('')}</div>`;
+  html += `</div>`;
+  return html;
+}
+
+function initDietDays() {
+  const days = ['mon','tue','wed','thu','fri','sat','sun'];
+  const container = document.getElementById('diet-days-container');
+  if(!container) return;
+  container.innerHTML = days.map(d => buildDietDay(d)).join('');
+  // Show mon by default
+  document.getElementById('diet-day-mon').classList.add('active');
+}
+
+function setDietDay(day, tabEl) {
+  document.querySelectorAll('.diet-day-content').forEach(d => d.classList.remove('active'));
+  const el = document.getElementById('diet-day-' + day);
+  if(el) el.classList.add('active');
+  document.querySelectorAll('.diet-day-tab').forEach(t => t.classList.remove('active'));
+  if(tabEl) tabEl.classList.add('active');
+}
+
+function toggleDietFood(id) {
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.classList.toggle('expanded');
+}
+
+// ── PAGE TABS ──
+function setTab(e, tab) {
+  if(e) e.preventDefault();
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  if(e) e.target.classList.add('active');
+  document.querySelectorAll('[id^="page-"]').forEach(p => p.style.display = 'none');
+  const el = document.getElementById('page-' + tab);
+  if(el) el.style.display = 'block';
+  const footer = document.getElementById('footer-el');
+  if(footer) footer.style.display = ['rules','progress'].includes(tab) ? 'block' : 'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(tab === 'workout') setDay('mon');
+}
+
+// ── DAY TABS ──
+function setDay(day) {
+  document.querySelectorAll('.workout-day').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+  const el = document.getElementById('day-' + day);
+  if(el) el.classList.add('active');
+  const days = ['mon','tue','wed','thu','fri','sat','sun'];
+  const idx = days.indexOf(day);
+  const tabs = document.querySelectorAll('.day-tab');
+  if(tabs[idx]) tabs[idx].classList.add('active');
+}
+
+// ── NAV CLICK HANDLING ──
+document.querySelectorAll('.nav-tab').forEach((tab, i) => {
+  tab.addEventListener('click', function(e) {
+    e.preventDefault();
+    const tabs = ['profile','workout','workout','workout','workout','workout','workout','workout','diet','rules','progress'];
+    const days = [null,'mon','tue','wed','thu','fri','sat','sun',null,null,null];
+    const tabId = tabs[i];
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    document.querySelectorAll('[id^="page-"]').forEach(p => p.style.display = 'none');
+    document.getElementById('page-' + tabId).style.display = 'block';
+    const footer = document.getElementById('footer-el');
+    footer.style.display = ['rules','progress'].includes(tabId) ? 'block' : 'none';
+    if(days[i]) setDay(days[i]);
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('page-profile').style.display = 'block';
+  document.querySelectorAll('[id^="page-"]:not(#page-profile)').forEach(p => p.style.display = 'none');
+  document.getElementById('footer-el').style.display = 'none';
+  initDietDays();
+});
+</script>
+</body>
+</html>
